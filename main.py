@@ -40,15 +40,21 @@ def save_to_elasticsearch_and_forward(message):
         # Extract the Elasticsearch document ID
         es_id = es_response['_id']
 
-        # Add the ID to the original message
-        message_dict['_id'] = es_id
+        # Create the structured JSON object
+        structured_message = {
+            "_index": ELASTICSEARCH_INDEX,
+            "_id": es_id,
+            "timestamp_ingestion": datetime.utcnow().isoformat(),
+            "type": "article",
+            "content": message_dict
+        }
 
-        # Log the response with the added ID
-        print(f"Message saved to Elasticsearch with ID {es_id}: {es_response}")
+        # Log the structured message
+        print(f"Structured message ready to be sent to Kafka: {structured_message}")
 
-        # Send the updated message with the ID to the Kafka output topic
-        producer.send(KAFKA_OUTPUT_TOPIC, message_dict)
-        print(f"Updated message with Elasticsearch ID sent to Kafka topic {KAFKA_OUTPUT_TOPIC}")
+        # Send the structured message to the Kafka output topic
+        producer.send(KAFKA_OUTPUT_TOPIC, structured_message)
+        print(f"Structured message sent to Kafka topic {KAFKA_OUTPUT_TOPIC}")
 
     except json.JSONDecodeError:
         print(f"Failed to decode message: {message}")
