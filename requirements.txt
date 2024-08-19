@@ -1,2 +1,6 @@
+certifi==2024.7.4
+elastic-transport==8.15.0
 elasticsearch==8.14.0
-kafka_python==2.0.2
+kafka-python==2.0.2
+urllib3==2.2.2
+kafka-python-ng

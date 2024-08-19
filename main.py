@@ -1,8 +1,8 @@
 import time
 from datetime import datetime
 from kafka import KafkaConsumer, KafkaProducer
-from kafka.errors import NoBrokersAvailable
-from elasticsearch import Elasticsearch
+from kafka.errors import NoBrokersAvailable, KafkaError
+from elasticsearch import Elasticsearch, ConnectionError, NotFoundError
 import json
 from config import KAFKA_TOPIC, KAFKA_BOOTSTRAP_SERVERS, ELASTICSEARCH_HOST, ELASTICSEARCH_INDEX, \
     ELASTICSEARCH_USERNAME, ELASTICSEARCH_PASSWORD, ELASTICSEARCH_CERT_PATH, KAFKA_OUTPUT_TOPIC
@@ -22,8 +22,14 @@ def create_kafka_consumer():
             )
             logger.info(f"Kafka consumer connected to topic {KAFKA_TOPIC}")
             return consumer
-        except NoBrokersAvailable:
-            logger.error("No Kafka brokers available. Retrying in 5 seconds...")
+        except NoBrokersAvailable as e:
+            logger.error(f"No Kafka brokers available: {e}. Retrying in 5 seconds...")
+            time.sleep(5)
+        except KafkaError as e:
+            logger.error(f"Kafka error occurred: {e}. Retrying in 5 seconds...")
+            time.sleep(5)
+        except Exception as e:
+            logger.error(f"Unexpected error while connecting to Kafka consumer: {e}. Retrying in 5 seconds...")
             time.sleep(5)
 
 
@@ -36,8 +42,14 @@ def create_kafka_producer():
             )
             logger.info(f"Kafka producer connected to topic {KAFKA_OUTPUT_TOPIC}")
             return producer
-        except NoBrokersAvailable:
-            logger.error("No Kafka brokers available. Retrying in 5 seconds...")
+        except NoBrokersAvailable as e:
+            logger.error(f"No Kafka brokers available: {e}. Retrying in 5 seconds...")
+            time.sleep(5)
+        except KafkaError as e:
+            logger.error(f"Kafka error occurred: {e}. Retrying in 5 seconds...")
+            time.sleep(5)
+        except Exception as e:
+            logger.error(f"Unexpected error while connecting to Kafka producer: {e}. Retrying in 5 seconds...")
             time.sleep(5)
 
 
@@ -45,12 +57,22 @@ def create_kafka_producer():
 ssl_context = ssl.create_default_context(cafile=ELASTICSEARCH_CERT_PATH)
 
 # Initialize Elasticsearch client once
-es = Elasticsearch(
-    [ELASTICSEARCH_HOST],
-    http_auth=(ELASTICSEARCH_USERNAME, ELASTICSEARCH_PASSWORD),
-    ssl_context=ssl_context,
-    verify_certs=True
-)
+try:
+    es = Elasticsearch(
+        [ELASTICSEARCH_HOST],
+        basic_auth=(ELASTICSEARCH_USERNAME, ELASTICSEARCH_PASSWORD),
+        ssl_context=ssl_context,
+        verify_certs=True
+    )
+    # Perform a simple operation to check connection
+    es.ping()
+    logger.info(f"Connected to Elasticsearch at {ELASTICSEARCH_HOST}")
+except ConnectionError as e:
+    logger.error(f"Failed to connect to Elasticsearch: {e}")
+    raise
+except Exception as e:
+    logger.error(f"Unexpected error while connecting to Elasticsearch: {e}")
+    raise
 
 
 def save_to_elasticsearch_and_forward(message):
@@ -82,30 +104,49 @@ def save_to_elasticsearch_and_forward(message):
         producer.send(KAFKA_OUTPUT_TOPIC, document)
         logger.debug(f"Structured message sent to Kafka topic {KAFKA_OUTPUT_TOPIC}")
 
-    except json.JSONDecodeError:
-        logger.error(f"Failed to decode message: {message}")
+    except json.JSONDecodeError as e:
+        logger.error(f"Failed to decode message: {message}. Error: {e}")
+    except KafkaError as e:
+        logger.error(f"Kafka error while sending message: {e}")
     except Exception as e:
-        logger.error(f"Error saving message to Elasticsearch or sending to Kafka: {e}")
+        logger.error(f"Unexpected error in save_to_elasticsearch_and_forward: {e}")
 
 
 if __name__ == '__main__':
+    consumer = None
+    producer = None
     try:
+        logger.info("Starting Kafka consumer...")
         # Create Kafka consumer and producer with retry mechanisms
         consumer = create_kafka_consumer()
         producer = create_kafka_producer()
 
         # Continuously listen to Kafka messages
         for message in consumer:
-            # Decode the message value from bytes to string
-            message_value = message.value.decode('utf-8')
-            # Save to Elasticsearch and forward to the output Kafka topic
-            save_to_elasticsearch_and_forward(message_value)
+            try:
+                # Decode the message value from bytes to string
+                logger.debug("new message arrived")
+                message_value = message.value.decode('utf-8')
+                # Save to Elasticsearch and forward to the output Kafka topic
+                save_to_elasticsearch_and_forward(message_value)
+            except Exception as e:
+                logger.error(f"Error processing message: {e}")
+
     except KeyboardInterrupt:
         logger.info("Shutting down gracefully...")
+    except Exception as e:
+        logger.error(f"Unexpected error in main execution: {e}")
     finally:
         # Ensure resources are closed properly
         if consumer:
-            consumer.close()
+            try:
+                consumer.close()
+                logger.info("Kafka consumer closed.")
+            except Exception as e:
+                logger.error(f"Error closing Kafka consumer: {e}")
         if producer:
-            producer.close()
-        logger.info("Kafka consumer and producer closed.")
+            try:
+                producer.close()
+                logger.info("Kafka producer closed.")
+            except Exception as e:
+                logger.error(f"Error closing Kafka producer: {e}")
