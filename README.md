@@ -1,75 +1,126 @@
-# Kafka to Elasticsearch Processor (Consumer 1)
-This project is a Python-based service that consumes messages from a Kafka topic, processes them, and then stores the processed messages in Elasticsearch. After saving the message in Elasticsearch, it forwards the processed message to another Kafka topic.
+# Kafka Consumer-Producer Skeleton
 
-## Features
-- Continuous Kafka Message Consumption: The service listens to a specified Kafka topic and processes incoming messages continuously.
-- Elasticsearch Integration: Messages are stored in Elasticsearch with additional metadata.
-- Kafka Message Forwarding: After processing, messages are forwarded to another Kafka topic.
-- Resilience: The service includes retry mechanisms to handle temporary unavailability of Kafka brokers.
-- Logging: Uses a logging system to track the service's behavior and any errors encountered.
+This repository provides a skeleton for creating Kafka consumer-producer applications. The skeleton is designed to read messages from a Kafka topic, process them, and forward the processed messages to another Kafka topic. The `process()` function is the key area where custom processing logic can be implemented.
 
-## Handling error and retries
+## Getting Started
 
-- Kafka Connection: The service includes a retry mechanism that will continuously attempt to connect to Kafka brokers if they are unavailable at startup.
-- Elasticsearch Storage: Any issues with storing messages in Elasticsearch or forwarding them to Kafka are logged, ensuring you have visibility into what went wrong.
+### Prerequisites
 
-## Installation
+- Python 3.x
+- Kafka Cluster
+- Elasticsearch (optional, depending on your use case)
+- Required Python packages: `kafka-python`, `elasticsearch`, `ssl`, `json`, `logging`, and others as listed in your `requirements.txt`.
 
-```code
-pip install -r requirements.txt
-```
+### Installation
 
-## Configuration
+1. Clone the repository:
+    ```bash
+    git clone https://github.com/your-repo/kafka-consumer-producer-skeleton.git
+    cd kafka-consumer-producer-skeleton
+    ```
 
-```code
-# KAFKA
-KAFKA_TOPIC = 'your_kafka_topic'  # The Kafka topic to consume messages from
-KAFKA_OUTPUT_TOPIC = 'your_kafka_output_topic'  # The Kafka topic to forward processed messages to
-KAFKA_BOOTSTRAP_SERVERS = ['172.17.12.80:9092']  # List of Kafka brokers to connect to
+2. Install the required packages:
+    ```bash
+    pip install -r requirements.txt
+    ```
 
-# ELASTICSEARCH
-ELASTICSEARCH_CERT_PATH = 'es-cert.crt'  # Path to the Elasticsearch SSL certificate (if using HTTPS)
-ELASTICSEARCH_HOST = '_elasticsearch_host'  # Hostname or IP address of the Elasticsearch instance
-ELASTICSEARCH_USERNAME = 'elastic'  # Username for Elasticsearch authentication
-ELASTICSEARCH_PASSWORD = 'password'  # Password for Elasticsearch authentication
-ELASTICSEARCH_INDEX = 'index'  # The Elasticsearch index where messages will be stored
+3. Configure your environment variables in the `config.py` file:
+    ```python
+    KAFKA_INPUT_TOPIC = 'your_input_topic'
+    KAFKA_OUTPUT_TOPIC = 'your_output_topic'
+    KAFKA_BOOTSTRAP_SERVERS = ['your_kafka_broker:9092']
+    ELASTICSEARCH_HOST = 'your_elasticsearch_host'
+    ELASTICSEARCH_INDEX = 'your_index'
+    ELASTICSEARCH_USERNAME = 'your_username'
+    ELASTICSEARCH_PASSWORD = 'your_password'
+    ELASTICSEARCH_CERT_PATH = '/path/to/your/ca.pem'
+    ```
 
-```
+## Usage
 
-## Running
+To create a new consumer, you only need to modify the `process()` function. The rest of the code handles the Kafka consumer-producer logic and error handling.
 
-```code
+### Running the Consumer
+
+Once you've implemented your custom `process()` function, run the consumer:
+
+```bash
 python main.py
 ```
 
-## Building the Docker image
+### Implementing Custom Processing Logic
 
-To build the Docker image for this service:
-
-1. Make sure your Dockerfile is correctly set up in the root directory of the project.
-2. Build the Docker image:
+1. Saving to Elasticsearch (Default Implementation)
+   By default, the process() function is set up to save incoming messages to Elasticsearch and update the message with the Elasticsearch-generated ID.
 
 ```code
-docker build -t your-docker-image:latest .
+def process(message):
+    """Process the Kafka message by saving it to Elasticsearch and updating it with ES's ID."""
+    try:
+        message_dict = json.loads(message)
+
+        document = {
+            "id": None,
+            "timestamp": datetime.utcnow().isoformat(),
+            "type": "article",
+            "content": message_dict
+        }
+
+        es_response = es.index(index=ELASTICSEARCH_INDEX, body=document)
+        es_id = es_response['_id']
+        document['id'] = es_id
+
+        return document
+
+    except Exception as e:
+        logger.error(f"Unexpected error in process function: {e}")
+        raise
+
 ```
 
-## Deploying on Kubernetes
-
-1. Apply the deployment and service configuration to your Kubernetes cluster:
+2. Calling an External API
+   If your use case involves processing the message by calling an external API, you can modify the process() function as follows:
 
 ```code
-kubectl apply -f deployment.yaml
-kubectl apply -f service.yaml
+import requests
+
+def process(message):
+    """Process the Kafka message by sending it to an external API and returning the API response."""
+    try:
+        message_dict = json.loads(message)
+        response = requests.post('https://api.example.com/endpoint', json=message_dict)
+        
+        if response.status_code == 200:
+            result = response.json()
+            return result
+        else:
+            logger.error(f"API call failed with status code {response.status_code}: {response.text}")
+            raise Exception("API call failed")
+    
+    except Exception as e:
+        logger.error(f"Unexpected error in process function: {e}")
+        raise
 ```
 
-2. Verify the deployment:
+3. Custom Data Transformation
+   If you need to perform custom data transformation or enrichment, you can modify the process() function like this:
 
 ```code
-kubectl get pods -l app=kafka-es-processor
+def process(message):
+    """Process the Kafka message by performing custom data transformation."""
+    try:
+        message_dict = json.loads(message)
+
+        # Example: Add a new field with a custom transformation
+        message_dict['new_field'] = "Transformed: " + message_dict.get('existing_field', '')
+
+        return message_dict
+
+    except Exception as e:
+        logger.error(f"Unexpected error in process function: {e}")
+        raise
 ```
 
-3. Verify the service:
+Handling Errors
 
-```code
-kubectl get svc kafka-es-processor-service
-```
+The skeleton includes robust error handling for various scenarios, including connection issues with Kafka and Elasticsearch, JSON decoding errors, and unexpected exceptions. Ensure that your process() function either handles or raises exceptions as needed.

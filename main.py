@@ -79,43 +79,7 @@ except Exception as e:
 
 def process(message):
     """Process the Kafka message by saving it to Elasticsearch and updating it with ES's ID."""
-    try:
-        # Parse the incoming Kafka message
-        message_dict = json.loads(message)
-
-        # Prepare the document structure for Elasticsearch
-        document = {
-            "id": None,  # This will be filled by Elasticsearch
-            "timestamp": datetime.utcnow().isoformat(),
-            "type": "article",
-            "content": message_dict
-        }
-
-        # Save the document to Elasticsearch and capture the response
-        es_response = es.index(index=ELASTICSEARCH_INDEX, body=document)
-        logger.debug("Message saved to Elasticsearch")
-
-        # Get the Elasticsearch generated ID
-        es_id = es_response['_id']
-
-        # Update the document with the Elasticsearch ID
-        document['id'] = es_id
-
-        # Log the structured message
-        logger.debug(f"Structured message updated with Elasticsearch ID: {document}")
-
-        # Return the updated document as the processed message
-        return document
-
-    except json.JSONDecodeError as e:
-        logger.error(f"Failed to decode message: {message}. Error: {e}")
-        raise
-    except KafkaError as e:
-        logger.error(f"Kafka error while processing message: {e}")
-        raise
-    except Exception as e:
-        logger.error(f"Unexpected error in process function: {e}")
-        raise
+    return message
 
 
 def handle_message(consumer, producer):

@@ -1,0 +1,340 @@
+2024-08-19 09:45:57,170 - RotatingLog - ERROR - No Kafka brokers available. Retrying in 5 seconds...
+2024-08-19 09:46:01,840 - RotatingLog - INFO - Shutting down gracefully...
+2024-08-19 10:00:59,414 - RotatingLog - INFO - Kafka consumer connected.
+2024-08-19 10:00:59,523 - RotatingLog - INFO - Kafka producer connected.
+2024-08-19 10:02:10,249 - RotatingLog - INFO - Shutting down gracefully...
+2024-08-19 10:02:10,273 - RotatingLog - INFO - Kafka consumer and producer closed.
+2024-08-19 10:02:12,035 - RotatingLog - INFO - Kafka consumer connected to topic test_modul_colectare
+2024-08-19 10:02:12,145 - RotatingLog - INFO - Kafka producer connected to topic modul_colectare_out
+2024-08-19 10:03:17,592 - RotatingLog - ERROR - Error saving message to Elasticsearch or sending to Kafka: TLS error caused by: TlsError(TLS error caused by: SSLError([SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1007)))
+2024-08-19 10:03:32,015 - RotatingLog - INFO - Shutting down gracefully...
+2024-08-19 10:03:32,024 - RotatingLog - INFO - Kafka consumer and producer closed.
+2024-08-19 10:03:33,718 - RotatingLog - INFO - Kafka consumer connected to topic test_modul_colectare
+2024-08-19 10:03:33,827 - RotatingLog - INFO - Kafka producer connected to topic modul_colectare_out
+2024-08-19 10:07:24,962 - RotatingLog - ERROR - Error saving message to Elasticsearch or sending to Kafka: TLS error caused by: TlsError(TLS error caused by: SSLError([SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1007)))
+2024-08-19 10:09:44,271 - RotatingLog - INFO - Shutting down gracefully...
+2024-08-19 10:09:44,280 - RotatingLog - INFO - Kafka consumer and producer closed.
+2024-08-19 10:10:01,075 - RotatingLog - INFO - Kafka consumer connected to topic test_modul_colectare
+2024-08-19 10:10:01,183 - RotatingLog - INFO - Kafka producer connected to topic modul_colectare_out
+2024-08-19 10:12:07,710 - RotatingLog - ERROR - Failed to decode message: "test": 3
+2024-08-19 10:12:19,773 - RotatingLog - DEBUG - Structured message ready to be sent to Kafka: {'id': 'eQ16aZEBlkXtCSytxkvZ', 'timestamp': '2024-08-19T07:12:19.513955', 'type': 'article', 'content': {'test': 3}}
+2024-08-19 10:12:21,892 - RotatingLog - DEBUG - Structured message sent to Kafka topic modul_colectare_out
+2024-08-19 10:13:10,150 - RotatingLog - INFO - Shutting down gracefully...
+2024-08-19 10:13:10,159 - RotatingLog - INFO - Kafka consumer and producer closed.
+2024-08-19 10:13:11,645 - RotatingLog - INFO - Kafka consumer connected to topic test_modul_colectare
+2024-08-19 10:13:11,758 - RotatingLog - INFO - Kafka producer connected to topic modul_colectare_out
+2024-08-19 10:13:53,950 - RotatingLog - DEBUG - Structured message ready to be sent to Kafka: {'id': 'pA18aZEBlkXtCSytNk7U', 'timestamp': '2024-08-19T07:13:53.843503', 'type': 'article', 'content': {'filters': {'isAlert': 'boolean', 'timestampStop': 'long', 'createdDate': 'date', 'streamId': {'filters': ['has', 'has-not'], 'type': 'text'}, 'timestampStart': {'filters': ['greater-than', 'less-than'], 'type': 'test'}, 'channel': 'text', '_class': 'text', 'id': 'text', 'text': 'text', 'url': 'text'}}}
+2024-08-19 10:13:55,654 - RotatingLog - DEBUG - Structured message sent to Kafka topic modul_colectare_out
+2024-08-19 10:16:18,120 - RotatingLog - INFO - Shutting down gracefully...
+2024-08-19 10:16:18,128 - RotatingLog - INFO - Kafka consumer and producer closed.
+2024-08-19 10:19:59,905 - RotatingLog - INFO - Kafka consumer connected to topic test_modul_colectare
+2024-08-19 10:20:00,009 - RotatingLog - INFO - Kafka producer connected to topic modul_colectare_out
+2024-08-19 10:20:00,640 - RotatingLog - INFO - Shutting down gracefully...
+2024-08-19 10:20:00,641 - RotatingLog - INFO - Kafka consumer and producer closed.
+2024-08-19 10:20:07,033 - RotatingLog - INFO - Kafka consumer connected to topic test_modul_colectare
+2024-08-19 10:20:07,137 - RotatingLog - INFO - Kafka producer connected to topic modul_colectare_out
+2024-08-19 10:20:08,086 - RotatingLog - INFO - Shutting down gracefully...
+2024-08-19 10:20:08,087 - RotatingLog - INFO - Kafka consumer and producer closed.
+2024-08-19 10:26:53,359 - RotatingLog - INFO - Kafka consumer connected to topic test_modul_colectare
+2024-08-19 10:26:53,463 - RotatingLog - INFO - Kafka producer connected to topic modul_colectare_out
+2024-08-19 10:26:56,077 - RotatingLog - INFO - Shutting down gracefully...
+2024-08-19 10:26:56,077 - RotatingLog - INFO - Kafka consumer and producer closed.
+2024-08-19 10:27:29,322 - RotatingLog - INFO - Starting Kafka consumer...
+2024-08-19 10:27:29,426 - RotatingLog - INFO - Kafka consumer connected to topic test_modul_colectare
+2024-08-19 10:27:29,531 - RotatingLog - INFO - Kafka producer connected to topic modul_colectare_out
+2024-08-19 10:30:50,642 - RotatingLog - INFO - Shutting down gracefully...
+2024-08-19 10:30:50,649 - RotatingLog - INFO - Kafka consumer and producer closed.
+2024-08-19 10:31:31,872 - RotatingLog - INFO - Connected to Elasticsearch at https://10.30.11.14:9200
+2024-08-19 10:31:31,872 - RotatingLog - INFO - Starting Kafka consumer...
+2024-08-19 10:31:31,976 - RotatingLog - INFO - Kafka consumer connected to topic test_modul_colectare
+2024-08-19 10:31:32,080 - RotatingLog - INFO - Kafka producer connected to topic modul_colectare_out
+2024-08-19 10:31:51,053 - RotatingLog - INFO - Shutting down gracefully...
+2024-08-19 10:31:51,057 - RotatingLog - INFO - Kafka consumer closed.
+2024-08-19 10:31:51,058 - RotatingLog - INFO - Kafka producer closed.
+2024-08-19 10:32:43,014 - RotatingLog - INFO - Connected to Elasticsearch at https://10.30.11.14:9200
+2024-08-19 10:32:43,014 - RotatingLog - INFO - Starting Kafka consumer...
+2024-08-19 10:32:43,117 - RotatingLog - INFO - Kafka consumer connected to topic test_modul_colectare
+2024-08-19 10:32:43,221 - RotatingLog - INFO - Kafka producer connected to topic modul_colectare_out
+2024-08-19 10:33:23,027 - RotatingLog - INFO - Shutting down gracefully...
+2024-08-19 10:33:23,033 - RotatingLog - INFO - Kafka consumer closed.
+2024-08-19 10:33:23,033 - RotatingLog - INFO - Kafka producer closed.
+2024-08-19 10:36:36,615 - RotatingLog - INFO - Connected to Elasticsearch at https://10.30.11.14:9200
+2024-08-19 10:36:36,615 - RotatingLog - INFO - Starting Kafka consumer...
+2024-08-19 10:36:36,719 - RotatingLog - INFO - Kafka consumer connected to topic test_modul_colectare
+2024-08-19 10:36:36,822 - RotatingLog - INFO - Kafka producer connected to topic modul_colectare_out
+2024-08-19 10:36:41,527 - RotatingLog - INFO - Shutting down gracefully...
+2024-08-19 10:36:41,533 - RotatingLog - INFO - Kafka consumer closed.
+2024-08-19 10:36:41,533 - RotatingLog - INFO - Kafka producer closed.
+2024-08-19 10:39:36,114 - RotatingLog - INFO - Connected to Elasticsearch at https://10.30.11.14:9200
+2024-08-19 10:39:36,114 - RotatingLog - INFO - Starting Kafka consumer...
+2024-08-19 10:39:36,218 - RotatingLog - INFO - Kafka consumer connected to topic test_modul_colectare
+2024-08-19 10:39:36,321 - RotatingLog - INFO - Kafka producer connected to topic modul_colectare_out
+2024-08-19 10:42:27,022 - RotatingLog - DEBUG - Structured message ready to be sent to Kafka: {'id': 'HQ2WaZEBlkXtCSytWouJ', 'timestamp': '2024-08-19T07:42:26.974508', 'type': 'article', 'content': {'filters': {'isAlert': 'boolean', 'timestampStop': 'long', 'createdDate': 'date', 'streamId': {'filters': ['has', 'has-not'], 'type': 'text'}, 'timestampStart': {'filters': ['greater-than', 'less-than'], 'type': 'test'}, 'channel': 'text', '_class': 'text', 'id': 'text', 'text': 'text', 'url': 'text'}}}
+2024-08-19 10:42:27,022 - RotatingLog - DEBUG - Structured message sent to Kafka topic modul_colectare_out
+2024-08-19 10:42:30,588 - RotatingLog - INFO - Shutting down gracefully...
+2024-08-19 10:42:30,594 - RotatingLog - INFO - Kafka consumer closed.
+2024-08-19 10:42:30,595 - RotatingLog - INFO - Kafka producer closed.
+2024-08-19 10:50:48,735 - RotatingLog - INFO - Connected to Elasticsearch at https://10.30.11.14:9200
+2024-08-19 10:50:48,735 - RotatingLog - INFO - Starting Kafka consumer...
+2024-08-19 10:50:48,741 - RotatingLog - INFO - Shutting down gracefully...
+2024-08-19 10:50:49,685 - RotatingLog - INFO - Connected to Elasticsearch at https://10.30.11.14:9200
+2024-08-19 10:50:49,685 - RotatingLog - INFO - Starting Kafka consumer...
+2024-08-19 10:50:49,789 - RotatingLog - INFO - Kafka consumer connected to topic test_modul_colectare
+2024-08-19 10:50:49,893 - RotatingLog - INFO - Kafka producer connected to topic modul_colectare_out
+2024-08-19 10:50:52,604 - RotatingLog - INFO - Shutting down gracefully...
+2024-08-19 10:52:22,584 - RotatingLog - INFO - Connected to Elasticsearch at https://10.30.11.14:9200
+2024-08-19 10:52:22,584 - RotatingLog - INFO - Starting Kafka consumer...
+2024-08-19 10:52:22,688 - RotatingLog - INFO - Kafka consumer connected to topic test_modul_colectare
+2024-08-19 10:52:22,792 - RotatingLog - INFO - Kafka producer connected to topic modul_colectare_out
+2024-08-19 10:52:26,009 - RotatingLog - DEBUG - new message arrived
+2024-08-19 10:52:26,054 - RotatingLog - DEBUG - Structured message ready to be sent to Kafka: {'id': '3A2faZEBlkXtCSytfp-F', 'timestamp': '2024-08-19T07:52:26.009525', 'type': 'article', 'content': {'filters': {'isAlert': 'boolean', 'timestampStop': 'long', 'createdDate': 'date', 'streamId': {'filters': ['has', 'has-not'], 'type': 'text'}, 'timestampStart': {'filters': ['greater-than', 'less-than'], 'type': 'test'}, 'channel': 'text', '_class': 'text', 'id': 'text', 'text': 'text', 'url': 'text'}}}
+2024-08-19 10:52:26,054 - RotatingLog - DEBUG - Structured message sent to Kafka topic modul_colectare_out
+2024-08-19 10:52:26,270 - RotatingLog - INFO - Shutting down gracefully...
+2024-08-19 10:52:26,279 - RotatingLog - INFO - Kafka consumer closed.
+2024-08-19 10:52:26,279 - RotatingLog - INFO - Kafka producer closed.
+2024-08-19 10:52:31,015 - RotatingLog - INFO - Connected to Elasticsearch at https://10.30.11.14:9200
+2024-08-19 10:52:31,015 - RotatingLog - INFO - Starting Kafka consumer...
+2024-08-19 10:52:31,119 - RotatingLog - INFO - Kafka consumer connected to topic test_modul_colectare
+2024-08-19 10:52:31,223 - RotatingLog - INFO - Kafka producer connected to topic modul_colectare_out
+2024-08-19 10:54:49,413 - RotatingLog - INFO - Shutting down gracefully...
+2024-08-19 10:54:49,418 - RotatingLog - INFO - Kafka consumer closed.
+2024-08-19 10:54:49,419 - RotatingLog - INFO - Kafka producer closed.
+2024-08-19 10:55:07,922 - RotatingLog - INFO - Connected to Elasticsearch at https://10.30.11.14:9200
+2024-08-19 10:55:07,922 - RotatingLog - INFO - Starting Kafka consumer...
+2024-08-19 10:55:08,026 - RotatingLog - INFO - Kafka consumer connected to topic test_modul_colectare
+2024-08-19 10:55:08,130 - RotatingLog - INFO - Kafka producer connected to topic modul_colectare_out
+2024-08-19 10:55:09,717 - RotatingLog - INFO - Shutting down gracefully...
+2024-08-19 10:55:09,718 - RotatingLog - INFO - Kafka consumer closed.
+2024-08-19 10:55:09,718 - RotatingLog - INFO - Kafka producer closed.
+2024-08-19 10:57:58,304 - RotatingLog - INFO - Connected to Elasticsearch at https://10.30.11.14:9200
+2024-08-19 10:57:58,304 - RotatingLog - INFO - Starting Kafka consumer...
+2024-08-19 10:57:58,408 - RotatingLog - INFO - Kafka consumer connected to topic test_modul_colectare
+2024-08-19 10:57:58,513 - RotatingLog - INFO - Kafka producer connected to topic modul_colectare_out
+2024-08-19 10:59:46,937 - RotatingLog - INFO - Shutting down gracefully...
+2024-08-19 10:59:46,942 - RotatingLog - INFO - Kafka consumer closed.
+2024-08-19 10:59:46,942 - RotatingLog - INFO - Kafka producer closed.
+2024-08-19 12:23:16,290 - RotatingLog - INFO - Connected to Elasticsearch at https://10.30.11.14:9200
+2024-08-19 12:23:16,291 - RotatingLog - INFO - Starting Kafka consumer...
+2024-08-19 12:23:16,394 - RotatingLog - INFO - Kafka consumer connected to topic test_modul_colectare
+2024-08-19 12:23:16,498 - RotatingLog - INFO - Kafka producer connected to topic modul_colectare_out
+2024-08-19 12:23:19,227 - RotatingLog - INFO - Shutting down gracefully...
+2024-08-19 12:23:19,227 - RotatingLog - INFO - Kafka consumer closed.
+2024-08-19 12:23:19,228 - RotatingLog - INFO - Kafka producer closed.
+2024-08-19 12:23:44,540 - RotatingLog - INFO - Connected to Elasticsearch at https://10.30.11.14:9200
+2024-08-19 12:23:44,540 - RotatingLog - INFO - Starting Kafka consumer...
+2024-08-19 12:23:44,644 - RotatingLog - INFO - Kafka consumer connected to topic test_modul_colectare
+2024-08-19 12:23:44,748 - RotatingLog - INFO - Kafka producer connected to topic modul_colectare_out
+2024-08-19 12:35:27,253 - RotatingLog - DEBUG - new message arrived
+2024-08-19 12:35:27,254 - RotatingLog - ERROR - Failed to decode message: {
+          "date": 1722845220,
+          "from_id": -22798006,
+          "id": 2918364,
+          "owner_id": -22798006,
+          "post_type": "post",
+          "text": """32-летний Сергей Романович показал редкие кадры со своей дочкой Евой😍
+
+Папина дочка🤗""",
+          "likes": {
+            "count": 59
+          },
+          "post_source": {
+            "type": "vk"
+          },
+          "reposts": {
+            "count": 3
+          },
+          "views": {
+            "count": 15702
+          },
+          "comments": [
+            {
+              "id": 2918370,
+              "from_id": 408773542,
+              "date": 1722845462,
+              "text": "Инфоцыган",
+              "post_id": 2918364,
+              "owner_id": -22798006,
+              "likes": {
+                "count": 0
+              },
+              "thread": {
+                "count": 0,
+                "items": []
+              },
+              "from_username": {
+                "first_name": "Alexander",
+                "last_name": "Ozerov"
+              }
+            },
+            {
+              "id": 2918369,
+              "from_id": 13801144,
+              "date": 1722845433,
+              "text": "Щас нищие накинутся что он не в России живет )",
+              "post_id": 2918364,
+              "owner_id": -22798006,
+              "likes": {
+                "count": 0
+              },
+              "thread": {
+                "count": 0,
+                "items": []
+              },
+              "from_username": {
+                "first_name": "Artur",
+                "last_name": "Krylov"
+              }
+            }
+          ]
+        }. Error: Expecting ',' delimiter: line 7 column 21 (char 173)
+2024-08-19 12:36:40,597 - RotatingLog - DEBUG - new message arrived
+2024-08-19 12:36:40,672 - RotatingLog - DEBUG - Structured message ready to be sent to Kafka: {'id': '8Q7-aZEBlkXtCSyt7nuW', 'timestamp': '2024-08-19T09:36:40.597440', 'type': 'article', 'content': {'date': 1722845220, 'from_id': -22798006, 'id': 2918364, 'owner_id': -22798006, 'post_type': 'post', 'text': '32-летний Сергей Романович показал редкие кадры со своей дочкой Евой😍 Папина дочка🤗', 'likes': {'count': 59}, 'post_source': {'type': 'vk'}, 'reposts': {'count': 3}, 'views': {'count': 15702}, 'comments': [{'id': 2918370, 'from_id': 408773542, 'date': 1722845462, 'text': 'Инфоцыган', 'post_id': 2918364, 'owner_id': -22798006, 'likes': {'count': 0}, 'thread': {'count': 0, 'items': []}, 'from_username': {'first_name': 'Alexander', 'last_name': 'Ozerov'}}, {'id': 2918369, 'from_id': 13801144, 'date': 1722845433, 'text': 'Щас нищие накинутся что он не в России живет )', 'post_id': 2918364, 'owner_id': -22798006, 'likes': {'count': 0}, 'thread': {'count': 0, 'items': []}, 'from_username': {'first_name': 'Artur', 'last_name': 'Krylov'}}]}}
+2024-08-19 12:36:40,672 - RotatingLog - DEBUG - Structured message sent to Kafka topic modul_colectare_out
+2024-08-19 13:54:00,076 - RotatingLog - INFO - Shutting down gracefully...
+2024-08-19 13:54:00,082 - RotatingLog - INFO - Kafka consumer closed.
+2024-08-19 13:54:00,082 - RotatingLog - INFO - Kafka producer closed.
+2024-08-19 13:54:00,394 - RotatingLog - INFO - Connected to Elasticsearch at https://10.30.11.14:9200
+2024-08-19 13:54:00,498 - RotatingLog - INFO - Kafka consumer connected to topic test_modul_colectare
+2024-08-19 13:54:00,602 - RotatingLog - INFO - Kafka producer connected to topic modul_colectare_out
+2024-08-19 13:54:00,602 - RotatingLog - INFO - Starting message handling loop...
+2024-08-19 13:54:03,818 - RotatingLog - DEBUG - New message arrived
+2024-08-19 13:54:03,832 - RotatingLog - ERROR - Unexpected error in process function: BadRequestError(400, 'document_parsing_exception', "[1:88] failed to parse field [content.test] of type [long] in document with id 'Eg9FapEBlkXtCSytyB81'. Preview of field's value: 'test'")
+2024-08-19 13:54:03,832 - RotatingLog - ERROR - Error processing message: BadRequestError(400, 'document_parsing_exception', "[1:88] failed to parse field [content.test] of type [long] in document with id 'Eg9FapEBlkXtCSytyB81'. Preview of field's value: 'test'")
+2024-08-19 13:54:03,832 - RotatingLog - DEBUG - New message arrived
+2024-08-19 13:54:03,860 - RotatingLog - DEBUG - Message saved to Elasticsearch
+2024-08-19 13:54:03,860 - RotatingLog - DEBUG - Structured message updated with Elasticsearch ID: {'id': 'Ew9FapEBlkXtCSytyB9R', 'timestamp': '2024-08-19T10:54:03.832414', 'type': 'article', 'content': {'test': 2}}
+2024-08-19 13:54:03,861 - RotatingLog - DEBUG - Processed message sent to Kafka topic modul_colectare_out
+2024-08-19 13:54:03,861 - RotatingLog - DEBUG - New message arrived
+2024-08-19 13:54:03,862 - RotatingLog - ERROR - Failed to decode message: "test": 3. Error: Extra data: line 1 column 7 (char 6)
+2024-08-19 13:54:03,862 - RotatingLog - ERROR - Error processing message: Extra data: line 1 column 7 (char 6)
+2024-08-19 13:54:03,862 - RotatingLog - DEBUG - New message arrived
+2024-08-19 13:54:03,892 - RotatingLog - DEBUG - Message saved to Elasticsearch
+2024-08-19 13:54:03,892 - RotatingLog - DEBUG - Structured message updated with Elasticsearch ID: {'id': 'FA9FapEBlkXtCSytyB9x', 'timestamp': '2024-08-19T10:54:03.862355', 'type': 'article', 'content': {'test': 3}}
+2024-08-19 13:54:03,893 - RotatingLog - DEBUG - Processed message sent to Kafka topic modul_colectare_out
+2024-08-19 13:54:03,893 - RotatingLog - DEBUG - New message arrived
+2024-08-19 13:54:03,922 - RotatingLog - DEBUG - Message saved to Elasticsearch
+2024-08-19 13:54:03,922 - RotatingLog - DEBUG - Structured message updated with Elasticsearch ID: {'id': 'FQ9FapEBlkXtCSytyB-P', 'timestamp': '2024-08-19T10:54:03.893687', 'type': 'article', 'content': {'filters': {'isAlert': 'boolean', 'timestampStop': 'long', 'createdDate': 'date', 'streamId': {'filters': ['has', 'has-not'], 'type': 'text'}, 'timestampStart': {'filters': ['greater-than', 'less-than'], 'type': 'test'}, 'channel': 'text', '_class': 'text', 'id': 'text', 'text': 'text', 'url': 'text'}}}
+2024-08-19 13:54:03,922 - RotatingLog - DEBUG - Processed message sent to Kafka topic modul_colectare_out
+2024-08-19 13:54:03,922 - RotatingLog - DEBUG - New message arrived
+2024-08-19 13:54:03,946 - RotatingLog - DEBUG - Message saved to Elasticsearch
+2024-08-19 13:54:03,947 - RotatingLog - DEBUG - Structured message updated with Elasticsearch ID: {'id': 'Fg9FapEBlkXtCSytyB-o', 'timestamp': '2024-08-19T10:54:03.923112', 'type': 'article', 'content': {'filters': {'isAlert': 'boolean', 'timestampStop': 'long', 'createdDate': 'date', 'streamId': {'filters': ['has', 'has-not'], 'type': 'text'}, 'timestampStart': {'filters': ['greater-than', 'less-than'], 'type': 'test'}, 'channel': 'text', '_class': 'text', 'id': 'text', 'text': 'text', 'url': 'text'}}}
+2024-08-19 13:54:03,947 - RotatingLog - DEBUG - Processed message sent to Kafka topic modul_colectare_out
+2024-08-19 13:54:03,947 - RotatingLog - DEBUG - New message arrived
+2024-08-19 13:54:03,974 - RotatingLog - DEBUG - Message saved to Elasticsearch
+2024-08-19 13:54:03,974 - RotatingLog - DEBUG - Structured message updated with Elasticsearch ID: {'id': 'Fw9FapEBlkXtCSytyB_D', 'timestamp': '2024-08-19T10:54:03.948140', 'type': 'article', 'content': {'filters': {'isAlert': 'boolean', 'timestampStop': 'long', 'createdDate': 'date', 'streamId': {'filters': ['has', 'has-not'], 'type': 'text'}, 'timestampStart': {'filters': ['greater-than', 'less-than'], 'type': 'test'}, 'channel': 'text', '_class': 'text', 'id': 'text', 'text': 'text', 'url': 'text'}}}
+2024-08-19 13:54:03,974 - RotatingLog - DEBUG - Processed message sent to Kafka topic modul_colectare_out
+2024-08-19 13:54:03,974 - RotatingLog - DEBUG - New message arrived
+2024-08-19 13:54:03,974 - RotatingLog - ERROR - Failed to decode message: {
+          "date": 1722845220,
+          "from_id": -22798006,
+          "id": 2918364,
+          "owner_id": -22798006,
+          "post_type": "post",
+          "text": """32-летний Сергей Романович показал редкие кадры со своей дочкой Евой😍
+
+Папина дочка🤗""",
+          "likes": {
+            "count": 59
+          },
+          "post_source": {
+            "type": "vk"
+          },
+          "reposts": {
+            "count": 3
+          },
+          "views": {
+            "count": 15702
+          },
+          "comments": [
+            {
+              "id": 2918370,
+              "from_id": 408773542,
+              "date": 1722845462,
+              "text": "Инфоцыган",
+              "post_id": 2918364,
+              "owner_id": -22798006,
+              "likes": {
+                "count": 0
+              },
+              "thread": {
+                "count": 0,
+                "items": []
+              },
+              "from_username": {
+                "first_name": "Alexander",
+                "last_name": "Ozerov"
+              }
+            },
+            {
+              "id": 2918369,
+              "from_id": 13801144,
+              "date": 1722845433,
+              "text": "Щас нищие накинутся что он не в России живет )",
+              "post_id": 2918364,
+              "owner_id": -22798006,
+              "likes": {
+                "count": 0
+              },
+              "thread": {
+                "count": 0,
+                "items": []
+              },
+              "from_username": {
+                "first_name": "Artur",
+                "last_name": "Krylov"
+              }
+            }
+          ]
+        }. Error: Expecting ',' delimiter: line 7 column 21 (char 173)
+2024-08-19 13:54:03,974 - RotatingLog - ERROR - Error processing message: Expecting ',' delimiter: line 7 column 21 (char 173)
+2024-08-19 13:54:03,975 - RotatingLog - DEBUG - New message arrived
+2024-08-19 13:54:04,008 - RotatingLog - DEBUG - Message saved to Elasticsearch
+2024-08-19 13:54:04,008 - RotatingLog - DEBUG - Structured message updated with Elasticsearch ID: {'id': 'GA9FapEBlkXtCSytyB_k', 'timestamp': '2024-08-19T10:54:03.975637', 'type': 'article', 'content': {'date': 1722845220, 'from_id': -22798006, 'id': 2918364, 'owner_id': -22798006, 'post_type': 'post', 'text': '32-летний Сергей Романович показал редкие кадры со своей дочкой Евой😍 Папина дочка🤗', 'likes': {'count': 59}, 'post_source': {'type': 'vk'}, 'reposts': {'count': 3}, 'views': {'count': 15702}, 'comments': [{'id': 2918370, 'from_id': 408773542, 'date': 1722845462, 'text': 'Инфоцыган', 'post_id': 2918364, 'owner_id': -22798006, 'likes': {'count': 0}, 'thread': {'count': 0, 'items': []}, 'from_username': {'first_name': 'Alexander', 'last_name': 'Ozerov'}}, {'id': 2918369, 'from_id': 13801144, 'date': 1722845433, 'text': 'Щас нищие накинутся что он не в России живет )', 'post_id': 2918364, 'owner_id': -22798006, 'likes': {'count': 0}, 'thread': {'count': 0, 'items': []}, 'from_username': {'first_name': 'Artur', 'last_name': 'Krylov'}}]}}
+2024-08-19 13:54:04,008 - RotatingLog - DEBUG - Processed message sent to Kafka topic modul_colectare_out
+2024-08-19 13:54:43,232 - RotatingLog - INFO - Shutting down gracefully...
+2024-08-19 13:54:43,237 - RotatingLog - INFO - Kafka consumer closed.
+2024-08-19 13:54:43,237 - RotatingLog - INFO - Kafka producer closed.
+2024-08-19 13:54:45,016 - RotatingLog - INFO - Connected to Elasticsearch at https://10.30.11.14:9200
+2024-08-19 13:54:45,119 - RotatingLog - INFO - Kafka consumer connected to topic test_modul_colectare
+2024-08-19 13:54:45,223 - RotatingLog - INFO - Kafka producer connected to topic modul_colectare_out
+2024-08-19 13:54:45,223 - RotatingLog - INFO - Starting message handling loop...
+2024-08-19 13:55:02,550 - RotatingLog - DEBUG - New message arrived
+2024-08-19 13:55:02,594 - RotatingLog - ERROR - Unexpected error in process function: BadRequestError(400, 'document_parsing_exception', "[1:88] failed to parse field [content.test] of type [long] in document with id 'NQ9GapEBlkXtCSytrSGY'. Preview of field's value: 'testtest'")
+2024-08-19 13:55:02,594 - RotatingLog - ERROR - Error processing message: BadRequestError(400, 'document_parsing_exception', "[1:88] failed to parse field [content.test] of type [long] in document with id 'NQ9GapEBlkXtCSytrSGY'. Preview of field's value: 'testtest'")
+2024-08-19 13:55:16,941 - RotatingLog - DEBUG - New message arrived
+2024-08-19 13:55:16,986 - RotatingLog - ERROR - Unexpected error in process function: BadRequestError(400, 'document_parsing_exception', "[1:88] failed to parse field [content.test] of type [long] in document with id '6A9GapEBlkXtCSyt5SHP'. Preview of field's value: 'test'")
+2024-08-19 13:55:16,986 - RotatingLog - ERROR - Error processing message: BadRequestError(400, 'document_parsing_exception', "[1:88] failed to parse field [content.test] of type [long] in document with id '6A9GapEBlkXtCSyt5SHP'. Preview of field's value: 'test'")
+2024-08-19 13:55:36,215 - RotatingLog - INFO - Shutting down gracefully...
+2024-08-19 13:55:36,219 - RotatingLog - INFO - Kafka consumer closed.
+2024-08-19 13:55:36,219 - RotatingLog - INFO - Kafka producer closed.
+2024-08-19 13:55:36,919 - RotatingLog - INFO - Connected to Elasticsearch at https://10.30.11.14:9200
+2024-08-19 13:55:37,029 - RotatingLog - INFO - Kafka consumer connected to topic test_modul_colectare
+2024-08-19 13:55:37,138 - RotatingLog - INFO - Kafka producer connected to topic modul_colectare_out
+2024-08-19 13:55:37,139 - RotatingLog - INFO - Starting message handling loop...
+2024-08-19 13:55:45,517 - RotatingLog - DEBUG - New message arrived
+2024-08-19 13:56:27,486 - RotatingLog - ERROR - Unexpected error in process function: BadRequestError(400, 'document_parsing_exception', "[1:88] failed to parse field [content.test] of type [long] in document with id 'rQ9HapEBlkXtCSyttiN9'. Preview of field's value: 'test'")
+2024-08-19 13:56:27,486 - RotatingLog - ERROR - Error processing message: BadRequestError(400, 'document_parsing_exception', "[1:88] failed to parse field [content.test] of type [long] in document with id 'rQ9HapEBlkXtCSyttiN9'. Preview of field's value: 'test'")
+2024-08-19 13:56:47,783 - RotatingLog - INFO - Shutting down gracefully...
+2024-08-19 13:56:47,789 - RotatingLog - INFO - Kafka consumer closed.
+2024-08-19 13:56:47,790 - RotatingLog - INFO - Kafka producer closed.
+2024-08-19 13:56:48,707 - RotatingLog - INFO - Connected to Elasticsearch at https://10.30.11.14:9200
+2024-08-19 13:56:48,816 - RotatingLog - INFO - Kafka consumer connected to topic test_modul_colectare
+2024-08-19 13:56:48,928 - RotatingLog - INFO - Kafka producer connected to topic modul_colectare_out
+2024-08-19 13:56:48,928 - RotatingLog - INFO - Starting message handling loop...
+2024-08-19 13:56:58,687 - RotatingLog - DEBUG - New message arrived
+2024-08-19 13:57:54,830 - RotatingLog - ERROR - Unexpected error in process function: BadRequestError(400, 'document_parsing_exception', "[1:88] failed to parse field [content.test] of type [long] in document with id 'Mw9JapEBlkXtCSytTidg'. Preview of field's value: 'test'")
+2024-08-19 13:57:54,831 - RotatingLog - ERROR - Error processing message: BadRequestError(400, 'document_parsing_exception', "[1:88] failed to parse field [content.test] of type [long] in document with id 'Mw9JapEBlkXtCSytTidg'. Preview of field's value: 'test'")
+2024-08-19 13:58:11,073 - RotatingLog - DEBUG - New message arrived
+2024-08-19 13:58:15,914 - RotatingLog - DEBUG - Message saved to Elasticsearch
+2024-08-19 13:58:15,915 - RotatingLog - DEBUG - Structured message updated with Elasticsearch ID: {'id': '6A9JapEBlkXtCSytoCfl', 'timestamp': '2024-08-19T10:58:14.037934', 'type': 'article', 'content': {'date': 1722845220, 'from_id': -22798006, 'id': 2918364, 'owner_id': -22798006, 'post_type': 'post', 'text': '32-летний Сергей Романович показал редкие кадры со своей дочкой Евой😍 Папина дочка🤗', 'likes': {'count': 59}, 'post_source': {'type': 'vk'}, 'reposts': {'count': 3}, 'views': {'count': 15702}, 'comments': [{'id': 2918370, 'from_id': 408773542, 'date': 1722845462, 'text': 'Инфоцыган', 'post_id': 2918364, 'owner_id': -22798006, 'likes': {'count': 0}, 'thread': {'count': 0, 'items': []}, 'from_username': {'first_name': 'Alexander', 'last_name': 'Ozerov'}}, {'id': 2918369, 'from_id': 13801144, 'date': 1722845433, 'text': 'Щас нищие накинутся что он не в России живет )', 'post_id': 2918364, 'owner_id': -22798006, 'likes': {'count': 0}, 'thread': {'count': 0, 'items': []}, 'from_username': {'first_name': 'Artur', 'last_name': 'Krylov'}}]}}
+2024-08-19 13:58:15,915 - RotatingLog - DEBUG - Processed message sent to Kafka topic modul_colectare_out
+2024-08-19 14:04:03,594 - RotatingLog - INFO - Shutting down gracefully...
+2024-08-19 14:04:03,602 - RotatingLog - INFO - Kafka consumer closed.
+2024-08-19 14:04:03,603 - RotatingLog - INFO - Kafka producer closed.
+2024-08-19 14:04:04,097 - RotatingLog - INFO - Connected to Elasticsearch at https://10.30.11.14:9200
+2024-08-19 14:04:04,201 - RotatingLog - INFO - Kafka consumer connected to topic test_modul_colectare
+2024-08-19 14:04:04,315 - RotatingLog - INFO - Kafka producer connected to topic modul_colectare_out
+2024-08-19 14:04:04,315 - RotatingLog - INFO - Starting message handling loop...
+2024-08-19 14:06:10,298 - RotatingLog - INFO - Shutting down gracefully...
+2024-08-19 14:06:10,302 - RotatingLog - INFO - Kafka consumer closed.
+2024-08-19 14:06:10,302 - RotatingLog - INFO - Kafka producer closed.
