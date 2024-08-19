@@ -1874,3 +1874,6 @@ a
 1venv/lib/python3.10/site-packages/pip/__init__.py,9/f/9fe1ebb16c94c291e10e2aef9f21f2c71d26d6e2
 r
 Bvenv/lib/python3.10/site-packages/pip/_vendor/typing_extensions.py,3/f/3f62377a366c034db1c2c0972fbea818d61ee24f
+:
+
+.gitignore,a/5/a5cc2925ca8258af241be7e5b0381edf30266302

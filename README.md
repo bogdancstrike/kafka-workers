@@ -15,8 +15,8 @@ This repository provides a skeleton for creating Kafka consumer-producer applica
 
 1. Clone the repository:
     ```bash
-    git clone https://github.com/your-repo/kafka-consumer-producer-skeleton.git
-    cd kafka-consumer-producer-skeleton
+    git clone https://gitlab-prod.devnet.dcti.ro/serviciul-osint/qsint/consumers/consumer-template
+    cd consumer-template
     ```
 
 2. Install the required packages:
@@ -29,6 +29,7 @@ This repository provides a skeleton for creating Kafka consumer-producer applica
     KAFKA_INPUT_TOPIC = 'your_input_topic'
     KAFKA_OUTPUT_TOPIC = 'your_output_topic'
     KAFKA_BOOTSTRAP_SERVERS = ['your_kafka_broker:9092']
+   
     ELASTICSEARCH_HOST = 'your_elasticsearch_host'
     ELASTICSEARCH_INDEX = 'your_index'
     ELASTICSEARCH_USERNAME = 'your_username'
@@ -38,7 +39,7 @@ This repository provides a skeleton for creating Kafka consumer-producer applica
 
 ## Usage
 
-To create a new consumer, you only need to modify the `process()` function. The rest of the code handles the Kafka consumer-producer logic and error handling.
+To create a new consumer, you only need to modify the `process()` method. The rest of the code handles the Kafka consumer-producer logic and error handling.
 
 ### Running the Consumer
 
