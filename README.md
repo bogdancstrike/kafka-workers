@@ -26,15 +26,15 @@ This repository provides a skeleton for creating Kafka consumer-producer applica
 
 3. Configure your environment variables in the `config.py` file:
     ```python
-    KAFKA_INPUT_TOPIC = 'your_input_topic'
-    KAFKA_OUTPUT_TOPIC = 'your_output_topic'
-    KAFKA_BOOTSTRAP_SERVERS = ['your_kafka_broker:9092']
+    KAFKA_INPUT_TOPIC = 'kafka_input_topic'
+    KAFKA_OUTPUT_TOPIC = 'kafka_output_topic'
+    KAFKA_BOOTSTRAP_SERVERS = ['kafka_broker:9092']
    
-    ELASTICSEARCH_HOST = 'your_elasticsearch_host'
-    ELASTICSEARCH_INDEX = 'your_index'
-    ELASTICSEARCH_USERNAME = 'your_username'
-    ELASTICSEARCH_PASSWORD = 'your_password'
-    ELASTICSEARCH_CERT_PATH = '/path/to/your/ca.pem'
+    ELASTICSEARCH_HOST = 'elasticsearch_host'
+    ELASTICSEARCH_INDEX = 'index'
+    ELASTICSEARCH_USERNAME = 'username'
+    ELASTICSEARCH_PASSWORD = 'password'
+    ELASTICSEARCH_CERT_PATH = '/path/to/elastic/ca.crt'
     ```
 
 ## Usage
