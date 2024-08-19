@@ -2,15 +2,16 @@ import time
 from datetime import datetime
 from kafka import KafkaConsumer, KafkaProducer
 from kafka.errors import NoBrokersAvailable, KafkaError
-from elasticsearch import Elasticsearch, ConnectionError, NotFoundError
+from elasticsearch import Elasticsearch, ConnectionError
 import json
+import ssl
 from config import KAFKA_TOPIC, KAFKA_BOOTSTRAP_SERVERS, ELASTICSEARCH_HOST, ELASTICSEARCH_INDEX, \
     ELASTICSEARCH_USERNAME, ELASTICSEARCH_PASSWORD, ELASTICSEARCH_CERT_PATH, KAFKA_OUTPUT_TOPIC
-import ssl
 from logger import logger
 
 
 def create_kafka_consumer():
+    """Create and return a Kafka consumer with retry logic."""
     while True:
         try:
             consumer = KafkaConsumer(
@@ -34,6 +35,7 @@ def create_kafka_consumer():
 
 
 def create_kafka_producer():
+    """Create and return a Kafka producer with retry logic."""
     while True:
         try:
             producer = KafkaProducer(
@@ -75,7 +77,8 @@ except Exception as e:
     raise
 
 
-def save_to_elasticsearch_and_forward(message):
+def process(message):
+    """Process the Kafka message by saving it to Elasticsearch and updating it with ES's ID."""
     try:
         # Parse the incoming Kafka message
         message_dict = json.loads(message)
@@ -90,7 +93,7 @@ def save_to_elasticsearch_and_forward(message):
 
         # Save the document to Elasticsearch and capture the response
         es_response = es.index(index=ELASTICSEARCH_INDEX, body=document)
-        logger.debug("message saved to elasticsearch")
+        logger.debug("Message saved to Elasticsearch")
 
         # Get the Elasticsearch generated ID
         es_id = es_response['_id']
@@ -99,37 +102,39 @@ def save_to_elasticsearch_and_forward(message):
         document['id'] = es_id
 
         # Log the structured message
-        logger.debug(f"Structured message ready to be sent to Kafka: {document}")
+        logger.debug(f"Structured message updated with Elasticsearch ID: {document}")
 
-        # Send the updated document to the Kafka output topic
-        producer.send(KAFKA_OUTPUT_TOPIC, document)
-        logger.debug(f"Structured message sent to Kafka topic {KAFKA_OUTPUT_TOPIC}")
+        # Return the updated document as the processed message
+        return document
 
     except json.JSONDecodeError as e:
         logger.error(f"Failed to decode message: {message}. Error: {e}")
+        raise
     except KafkaError as e:
-        logger.error(f"Kafka error while sending message: {e}")
+        logger.error(f"Kafka error while processing message: {e}")
+        raise
     except Exception as e:
-        logger.error(f"Unexpected error in save_to_elasticsearch_and_forward: {e}")
+        logger.error(f"Unexpected error in process function: {e}")
+        raise
 
 
-if __name__ == '__main__':
-    consumer = None
-    producer = None
+def handle_message(consumer, producer):
+    """Continuously consume messages, process them, and forward to another Kafka topic."""
     try:
-        logger.info("Starting Kafka consumer...")
-        # Create Kafka consumer and producer with retry mechanisms
-        consumer = create_kafka_consumer()
-        producer = create_kafka_producer()
-
-        # Continuously listen to Kafka messages
+        logger.info("Starting message handling loop...")
         for message in consumer:
             try:
                 # Decode the message value from bytes to string
-                logger.debug("new message arrived")
+                logger.debug("New message arrived")
                 message_value = message.value.decode('utf-8')
-                # Save to Elasticsearch and forward to the output Kafka topic
-                save_to_elasticsearch_and_forward(message_value)
+
+                # Process the message using the custom process function
+                processed_message = process(message_value)
+
+                # Send the processed message to the output Kafka topic
+                producer.send(KAFKA_OUTPUT_TOPIC, processed_message)
+                logger.debug(f"Processed message sent to Kafka topic {KAFKA_OUTPUT_TOPIC}")
+
             except Exception as e:
                 logger.error(f"Error processing message: {e}")
 
@@ -138,16 +143,36 @@ if __name__ == '__main__':
     except Exception as e:
         logger.error(f"Unexpected error in main execution: {e}")
     finally:
-        # Ensure resources are closed properly
-        if consumer:
-            try:
-                consumer.close()
-                logger.info("Kafka consumer closed.")
-            except Exception as e:
-                logger.error(f"Error closing Kafka consumer: {e}")
-        if producer:
-            try:
-                producer.close()
-                logger.info("Kafka producer closed.")
-            except Exception as e:
-                logger.error(f"Error closing Kafka producer: {e}")
+        close_resources(consumer, producer)
+
+
+def close_resources(consumer, producer):
+    """Close Kafka consumer and producer resources gracefully."""
+    if consumer:
+        try:
+            consumer.close()
+            logger.info("Kafka consumer closed.")
+        except Exception as e:
+            logger.error(f"Error closing Kafka consumer: {e}")
+    if producer:
+        try:
+            producer.close()
+            logger.info("Kafka producer closed.")
+        except Exception as e:
+            logger.error(f"Error closing Kafka producer: {e}")
+
+
+if __name__ == '__main__':
+    consumer = None
+    producer = None
+    try:
+        # Create Kafka consumer and producer with retry mechanisms
+        consumer = create_kafka_consumer()
+        producer = create_kafka_producer()
+
+        # Handle incoming Kafka messages
+        handle_message(consumer, producer)
+
+    except Exception as e:
+        logger.error(f"Unexpected error in main execution: {e}")
+        close_resources(consumer, producer)
