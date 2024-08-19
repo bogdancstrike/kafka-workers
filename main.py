@@ -5,7 +5,7 @@ from kafka.errors import NoBrokersAvailable, KafkaError
 from elasticsearch import Elasticsearch, ConnectionError
 import json
 import ssl
-from config import KAFKA_TOPIC, KAFKA_BOOTSTRAP_SERVERS, ELASTICSEARCH_HOST, ELASTICSEARCH_INDEX, \
+from config import KAFKA_INPUT_TOPIC, KAFKA_BOOTSTRAP_SERVERS, ELASTICSEARCH_HOST, ELASTICSEARCH_INDEX, \
     ELASTICSEARCH_USERNAME, ELASTICSEARCH_PASSWORD, ELASTICSEARCH_CERT_PATH, KAFKA_OUTPUT_TOPIC
 from logger import logger
 
@@ -15,13 +15,13 @@ def create_kafka_consumer():
     while True:
         try:
             consumer = KafkaConsumer(
-                KAFKA_TOPIC,
+                KAFKA_INPUT_TOPIC,
                 bootstrap_servers=KAFKA_BOOTSTRAP_SERVERS,
                 auto_offset_reset='earliest',
                 enable_auto_commit=True,
                 group_id='consumer_for_es'
             )
-            logger.info(f"Kafka consumer connected to topic {KAFKA_TOPIC}")
+            logger.info(f"Kafka consumer connected to topic {KAFKA_INPUT_TOPIC}")
             return consumer
         except NoBrokersAvailable as e:
             logger.error(f"No Kafka brokers available: {e}. Retrying in 5 seconds...")
