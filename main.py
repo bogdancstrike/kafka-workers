@@ -90,6 +90,7 @@ def save_to_elasticsearch_and_forward(message):
 
         # Save the document to Elasticsearch and capture the response
         es_response = es.index(index=ELASTICSEARCH_INDEX, body=document)
+        logger.debug("message saved to elasticsearch")
 
         # Get the Elasticsearch generated ID
         es_id = es_response['_id']
