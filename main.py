@@ -20,7 +20,7 @@ def create_kafka_consumer():
                 enable_auto_commit=True,
                 group_id='consumer_for_es'
             )
-            logger.info("Kafka consumer connected.")
+            logger.info(f"Kafka consumer connected to topic {KAFKA_TOPIC}")
             return consumer
         except NoBrokersAvailable:
             logger.error("No Kafka brokers available. Retrying in 5 seconds...")
@@ -34,7 +34,7 @@ def create_kafka_producer():
                 bootstrap_servers=KAFKA_BOOTSTRAP_SERVERS,
                 value_serializer=lambda v: json.dumps(v).encode('utf-8')
             )
-            logger.info("Kafka producer connected.")
+            logger.info(f"Kafka producer connected to topic {KAFKA_OUTPUT_TOPIC}")
             return producer
         except NoBrokersAvailable:
             logger.error("No Kafka brokers available. Retrying in 5 seconds...")
