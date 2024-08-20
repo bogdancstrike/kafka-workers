@@ -1,127 +1,234 @@
-# Kafka Consumer-Producer Skeleton
+# Consumer Skeleton Project
 
-This repository provides a skeleton for creating Kafka consumer-producer applications. The skeleton is designed to read messages from a Kafka topic, process them, and forward the processed messages to another Kafka topic. The `process()` function is the key area where custom processing logic can be implemented.
+## Table of Contents
 
-## Getting Started
+1. [Introduction](#introduction)
+2. [Project Structure](#project-structure)
+3. [Architecture Overview](#architecture-overview)
+4. [Scope of the Project](#scope-of-the-project)
+5. [Setup and Installation](#setup-and-installation)
+6. [Usage](#usage)
+7. [Customization and Implementation](#customization-and-implementation)
+8. [Considerations](#considerations)
+9. [Future Enhancements](#future-enhancements)
 
-### Prerequisites
+## Introduction
 
-- Python 3.x
-- Kafka Cluster
-- Elasticsearch (optional, depending on your use case)
-- Required Python packages: `kafka-python`, `elasticsearch`, `ssl`, `json`, `logging`, and others as listed in your `requirements.txt`.
+This project provides a skeleton for building Kafka consumers that read messages from one or more Kafka topics, aggregate them based on a common identifier (e.g., `id`), process the aggregated message, and then forward the processed message to one or more output Kafka topics. This skeleton is designed to be easily extendable and customizable, allowing developers to implement specific processing logic by modifying a single function.
 
-### Installation
+## Project Structure
+
+```plaintext
+.
+├── framework.py          # Core framework for handling Kafka operations
+├── worker.py             # Contains the process() function to customize processing logic
+├── main.py               # Entry point for running the Kafka consumer
+├── models.py             # ORM models and database initialization
+├── config.py             # Configuration settings for the database and consumer
+├── utils/
+│   └── logger.py         # Logger setup for the project
+└── README.md             # Project documentation (this file)
+```
+
+# Architecture Overview
+
+The architecture of the project is designed to be modular, allowing for easy customization and scaling. The key components are:
+
+1. Kafka Consumer: Reads messages from one or more input topics.
+2. Kafka Producer: Sends processed messages to one or more output topics.
+3. Database Configuration: Fetches consumer configuration from a database, making the consumer highly configurable.
+4. Message Aggregation: Aggregates messages from different topics based on a common id.
+5. Processing Logic: Custom logic implemented in the process() function in worker.py.
+6. Timeout Handling: Ensures that incomplete message aggregations are discarded after a configurable timeout.
+
+## Scope of the Project
+
+The scope of this project is to provide a skeleton or boilerplate for Kafka consumers that require message aggregation and custom processing logic. The skeleton is designed to be extendable and flexible, allowing developers to easily implement their own processing logic while handling common tasks like message consumption, aggregation, and production.
+
+### Setup and Installation
+
+#### Prerequisites
+
+- Python 3.10+
+- MySQL database (or any other SQL database with minor modifications)
+- Kafka broker
+
+#### Installation
 
 1. Clone the repository:
-    ```bash
-    git clone https://gitlab-prod.devnet.dcti.ro/serviciul-osint/qsint/consumers/consumer-template
-    cd consumer-template
-    ```
 
-2. Install the required packages:
-    ```bash
-    pip install -r requirements.txt
-    ```
+```code
+git clone https://gitlab-prod.devnet.dcti.ro/serviciul-osint/qsint/consumers/consumer-template
+cd consumer-template
+```
 
-3. Configure your environment variables in the `config.py` file:
-    ```python
-    KAFKA_INPUT_TOPIC = 'kafka_input_topic'
-    KAFKA_OUTPUT_TOPIC = 'kafka_output_topic'
-    KAFKA_BOOTSTRAP_SERVERS = ['kafka_broker:9092']
-   
-    ELASTICSEARCH_HOST = 'elasticsearch_host'
-    ELASTICSEARCH_INDEX = 'index'
-    ELASTICSEARCH_USERNAME = 'username'
-    ELASTICSEARCH_PASSWORD = 'password'
-    ELASTICSEARCH_CERT_PATH = '/path/to/elastic/ca.crt'
-    ```
+2. Set up a virtual environment:
 
-## Usage
+```code
+python3 -m venv venv
+source venv/bin/activate
+```
 
-To create a new consumer, you only need to modify the `process()` method. The rest of the code handles the Kafka consumer-producer logic and error handling.
+3. Install dependencies
 
-### Running the Consumer
+```code
+pip install -r requirements.txt
+```
 
-Once you've implemented your custom `process()` function, run the consumer:
+4. Configure database (**MySQL**) and Consumer Name
 
-```bash
+Update the config.py file with your database credentials and Consumer Name:
+
+```code
+DB_HOST = 'localhost'
+DB_PORT = 3306
+DB_NAME = 'your_db_name'
+DB_USER = 'your_db_user'
+DB_PASSWORD = 'your_db_password'
+
+CONSUMER_NAME = 'consumer_skeleton'
+```
+
+### Usage 
+
+#### Running the Consumer
+To run the consumer:
+
+```code
 python main.py
 ```
 
-### Implementing Custom Processing Logic
+This will start the Kafka consumer, which will begin reading from the input topics, aggregating messages, processing them, and then forwarding them to the output topics.
 
-1. Saving to Elasticsearch (Default Implementation)
-   By default, the process() function is set up to save incoming messages to Elasticsearch and update the message with the Elasticsearch-generated ID.
+#### Configuring the Consumer
 
-```code
-def process(message):
-    """Process the Kafka message by saving it to Elasticsearch and updating it with ES's ID."""
-    try:
-        message_dict = json.loads(message)
+The consumer configuration is stored in a database table (`consumer_configs`). The `CONSUMER_NAME` in `config.py` determines which configuration to load. The configuration includes:
 
-        document = {
-            "id": None,
-            "timestamp": datetime.utcnow().isoformat(),
-            "type": "article",
-            "content": message_dict
-        }
+- Input Topics: Topics from which the consumer will read messages.
+- Output Topics: Topics to which the processed messages will be sent.
+- Kafka Bootstrap Servers: Kafka brokers to connect to.
 
-        es_response = es.index(index=ELASTICSEARCH_INDEX, body=document)
-        es_id = es_response['_id']
-        document['id'] = es_id
+#### Example Table Structure
 
-        return document
+| id  | consumer_name     | topics_input        | topics_output       | kafka_bootstrap_server         | metadatas |
+|-----|-------------------|---------------------|---------------------|--------------------------------|-----------|
+| 1   | consumer_skeleton | topic_1,topic_2     | output_topic_1      | localhost:9092                 | NULL      |
 
-    except Exception as e:
-        logger.error(f"Unexpected error in process function: {e}")
-        raise
+- **`consumer_name`**: A unique identifier for the consumer. This should match the `CONSUMER_NAME` defined in `config.py`.
+- **`topics_input`**: A comma-separated list of Kafka topics that the consumer will read from.
+- **`topics_output`**: A comma-separated list of Kafka topics to which the processed messages will be sent.
+- **`kafka_bootstrap_server`**: A comma-separated list of Kafka bootstrap servers.
+- **`metadatas`**: Additional metadata for the consumer (optional).
 
-```
+## Customization and Implementation
 
-2. Calling an External API
-   If your use case involves processing the message by calling an external API, you can modify the process() function as follows:
+### Customizing `process()`
 
-```code
+The `process()` function in `worker.py` is where you can implement your custom processing logic. This function receives the aggregated message and is expected to return the processed message that will be forwarded to the output topics.
+
+#### Example Customization
+
+### Customizing `process()` to Call an External API
+
+In many cases, you may want to enrich the message data by calling an external API. The `process()` function can be customized to make such API calls, process the response, and append the result to the `content` of the message.
+
+#### Example Customization: Calling an External API
+
+Here is an example of how you might modify the `process()` function to call an external API and include the API response in the `content` of the message:
+
+```python
 import requests
+from utils.logger import logger
 
-def process(message):
-    """Process the Kafka message by sending it to an external API and returning the API response."""
-    try:
-        message_dict = json.loads(message)
-        response = requests.post('https://api.example.com/endpoint', json=message_dict)
-        
-        if response.status_code == 200:
-            result = response.json()
-            return result
-        else:
-            logger.error(f"API call failed with status code {response.status_code}: {response.text}")
-            raise Exception("API call failed")
+def process(message, consumer_name):
+    """
+    Process the Kafka message by calling an external API and appending its result to the content.
+
+    Args:
+        message (dict): The aggregated message with fields combined from one or more topics.
+        consumer_name (str): The name of the consumer, as defined in `config.py`. This is also the
+                             ID of the consumer in the database and is used for logging purposes.
+
+    Returns:
+        dict: The final processed message, including the result from the external API.
+    """
+
+    # Example: Check if the 'text' field exists and call an external API with this text
+    if "text" in message["content"]:
+        try:
+            # Example API call
+            api_url = "https://api.example.com/analyze"
+            response = requests.post(api_url, json={"text": message["content"]["text"]})
+            
+            if response.status_code == 200:
+                api_result = response.json()
+
+                # Assume the API returns a dictionary of results that you want to add to the content
+                message["content"].update(api_result)
+
+                logger.debug(f"{consumer_name}: API call successful, added {list(api_result.keys())} to content")
+            else:
+                logger.error(f"{consumer_name}: API call failed with status code {response.status_code}")
+        except requests.exceptions.RequestException as e:
+            logger.error(f"{consumer_name}: API call failed with exception {e}")
     
-    except Exception as e:
-        logger.error(f"Unexpected error in process function: {e}")
-        raise
+    return message
 ```
 
-3. Custom Data Transformation
-   If you need to perform custom data transformation or enrichment, you can modify the process() function like this:
+Key Considerations When Calling an External API
+1. Error Handling:
+   - Ensure that you handle API errors gracefully. If the API call fails, decide whether to skip the message, retry the API call, or log the error and continue processing.
+   - Use appropriate logging to capture both successes and failures of the API calls.
+2. Performance
+   - External API calls can introduce latency into the message processing pipeline. Consider the impact of this latency on your overall system performance and message throughput.
+   - If the API response time is critical, you may want to implement asynchronous processing or use a message queue to handle API calls in parallel.
+3. Security
+   - Secure the API call by handling sensitive data appropriately (e.g., API keys, tokens).
+   - Ensure that you’re making API calls over HTTPS to protect the data in transit.
+4. Idempotency
+   - Ensure that the process() function remains idempotent even when calling an external API. This means that if the same message is processed multiple times, the outcome should be the same.
+   - If the API provides non-idempotent results (e.g., returning a timestamp), consider how you will handle these cases.
+   - 
+#### Example: Enriching a Message with Sentiment Analysis
+Suppose you have an external API that provides sentiment analysis based on text. Here’s how you might integrate it:
 
-```code
-def process(message):
-    """Process the Kafka message by performing custom data transformation."""
-    try:
-        message_dict = json.loads(message)
+```python
+def process(message, consumer_name):
+    if "text" in message["content"]:
+        try:
+            # Call the sentiment analysis API
+            api_url = "https://api.example.com/sentiment"
+            response = requests.post(api_url, json={"text": message["content"]["text"]})
+            
+            if response.status_code == 200:
+                sentiment_result = response.json()
 
-        # Example: Add a new field with a custom transformation
-        message_dict['new_field'] = "Transformed: " + message_dict.get('existing_field', '')
+                # Add the sentiment analysis result to the content
+                message["content"]["sentiment"] = sentiment_result.get("sentiment")
 
-        return message_dict
-
-    except Exception as e:
-        logger.error(f"Unexpected error in process function: {e}")
-        raise
+                logger.debug(f"{consumer_name}: Sentiment analysis added to message")
+            else:
+                logger.error(f"{consumer_name}: Sentiment analysis API call failed with status {response.status_code}")
+        except requests.exceptions.RequestException as e:
+            logger.error(f"{consumer_name}: Sentiment analysis API call failed with exception {e}")
+    
+    return message
 ```
 
-Handling Errors
+In this example, the `process()` function calls an external sentiment analysis API, retrieves the sentiment score, and appends it to the message content. The result is then returned and sent to the output Kafka topics.
 
-The skeleton includes robust error handling for various scenarios, including connection issues with Kafka and Elasticsearch, JSON decoding errors, and unexpected exceptions. Ensure that your process() function either handles or raises exceptions as needed.
+
+
+
+## Considerations
+
+- Timeouts: The `MESSAGE_TIMEOUT` setting in `config.py` controls how long the consumer waits for all expected messages with the same ID to arrive before discarding the incomplete aggregation. Adjust this value based on the expected delay between messages from different topics.
+- Logging: The project uses a centralized logging setup (via `logger.py`) to capture important events, errors, and debugging information. Make sure to configure the log level appropriately (**DEBUG**, **INFO**, **WARN**, etc.) for your deployment environment.
+- Database Configuration: The consumer configuration is stored in a database, which allows for flexibility in changing the consumer behavior without modifying the code. Ensure that your database is secured and that access is appropriately controlled.
+
+## Future Enhancements
+
+- Support for More Databases: Expand the ORM support to include other databases such as PostgreSQL, SQLite, etc., making the consumer skeleton more versatile.
+- Dynamic Consumer Group Assignment: Implement functionality for dynamic assignment of consumer groups based on the configuration stored in the database.
+- Monitoring and Metrics: Integrate monitoring tools to track consumer performance, message processing rates, lag, and other key metrics to ensure smooth operation.
+- Error Handling Enhancements: Improve error handling mechanisms by adding support for retries, dead-letter queues (DLQs), and real-time alerting in case of failures or anomalies.
