@@ -149,13 +149,21 @@ def handle_message(consumer, producer, topics_input, output_topics, consumer_nam
                             timestamp_buffer[message_id] = current_time
 
                         # Merge fields from the topic's message into the aggregate message
-                        message_buffer[message_id].update(message_value)
+                        for key, value in message_value.items():
+                            if key == "content" and key in message_buffer[message_id]:
+                                # Merge content dictionaries
+                                message_buffer[message_id]["content"].update(value)
+                            else:
+                                # Update or add other fields
+                                message_buffer[message_id][key] = value
+
                         topic_tracker[message_id].add(topic)
 
                         # Log the arrival of a message for this ID
                         num_received = len(topic_tracker[message_id])
                         total_expected = len(topics_input)
-                        logger.info(f"Message {num_received}/{total_expected} arrived for ID = {message_id}")
+                        logger.info(
+                            f"Message {num_received}/{total_expected} arrived for ID = {message_id} with content: {message_value}")
 
                         # Check if all topics have arrived for the given ID (for aggregation)
                         if num_received == total_expected:
@@ -164,6 +172,7 @@ def handle_message(consumer, producer, topics_input, output_topics, consumer_nam
                             # Process the aggregated message
                             aggregated_message = message_buffer.pop(message_id)
                             processed_message = process(aggregated_message, consumer_name)
+                            logger.debug(f"Processed message: {processed_message}")
 
                             # Send the processed message to all output topics
                             for output_topic in output_topics:
