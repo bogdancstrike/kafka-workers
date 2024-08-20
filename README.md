@@ -7,10 +7,11 @@
 3. [Architecture Overview](#architecture-overview)
 4. [Scope of the Project](#scope-of-the-project)
 5. [Setup and Installation](#setup-and-installation)
-6. [Usage](#usage)
-7. [Customization and Implementation](#customization-and-implementation)
-8. [Considerations](#considerations)
-9. [Future Enhancements](#future-enhancements)
+6. [Database](#database)
+7. [Usage](#usage)
+8. [Customization and Implementation](#customization-and-implementation)
+9. [Considerations](#considerations)
+10. [Future Enhancements](#future-enhancements)
 
 ## Introduction
 
@@ -103,7 +104,7 @@ python main.py
 
 This will start the Kafka consumer, which will begin reading from the input topics, aggregating messages, processing them, and then forwarding them to the output topics.
 
-#### Configuring the Consumer
+## Database
 
 The consumer configuration is stored in a database table (`consumer_configs`). The `CONSUMER_NAME` in `config.py` determines which configuration to load. The configuration includes:
 
@@ -113,9 +114,14 @@ The consumer configuration is stored in a database table (`consumer_configs`). T
 
 #### Example Table Structure
 
-| id  | consumer_name     | topics_input        | topics_output | kafka_bootstrap_server         | metadatas |
-|-----|-------------------|---------------------|---------------|--------------------------------|-----------|
-| 1   | consumer_skeleton | topic_1,topic_2     | topic_3       | localhost:9092                 | NULL      |
+| id  | consumer_name | topics_input     | topics_output     | metadatas | kafka_bootstrap_server |
+|-----|---------------|------------------|-------------------|-----------|------------------------|
+| 2   | consumer1     | topic_1          | topic_2           | <null>    | 172.17.12.80:9092       |
+| 3   | consumer2     | topic_2          | topic_3,topic_4   | <null>    | 172.17.12.80:9092       |
+| 4   | consumer3     | topic_3          | topic_5           | <null>    | 172.17.12.80:9092       |
+| 5   | consumer4     | topic_4          | topic_6           | <null>    | 172.17.12.80:9092       |
+| 6   | consumer5     | topic_5,topic_6  | topic_7           | <null>    | 172.17.12.80:9092       |
+
 
 - **`consumer_name`**: A unique identifier for the consumer. This should match the `CONSUMER_NAME` defined in `config.py`.
 - **`topics_input`**: A comma-separated list of Kafka topics that the consumer will read from.
