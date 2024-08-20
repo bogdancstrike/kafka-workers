@@ -53,17 +53,23 @@ The architecture of the project is designed to be modular, allowing for easy cus
 
 The consumer configuration is stored in a database table (`consumer_configs`). The `CONSUMER_NAME` in `config.py` determines which configuration to load. The configuration includes:
 
-| id  | consumer_name | topics_input     | topics_output     | metadatas | kafka_bootstrap_server |
-|-----|---------------|------------------|-------------------|-----------|------------------------|
-| 2   | consumer1     | topic_1          | topic_2           | <null>    | 172.17.12.80:9092       |
-| 3   | consumer2     | topic_2          | topic_3,topic_4   | <null>    | 172.17.12.80:9092       |
-| 4   | consumer3     | topic_3          | topic_5           | <null>    | 172.17.12.80:9092       |
-| 5   | consumer4     | topic_4          | topic_6           | <null>    | 172.17.12.80:9092       |
-| 6   | consumer5     | topic_5,topic_6  | topic_7           | <null>    | 172.17.12.80:9092       |
-
 - **Input Topics**: Topics from which the consumer will read messages.
 - **Output Topics**: Topics to which the processed messages will be sent.
 - **Kafka Bootstrap Servers**: Kafka brokers to connect to.
+
+| id | consumer_name | topics_input     | topics_output     | metadatas | kafka_bootstrap_server |
+|----|---------------|------------------|-------------------|-----------|------------------------|
+| 1  | consumer1     | topic_1          | topic_2           | <null>    | 172.17.12.80:9092       |
+| 2  | consumer2     | topic_2          | topic_3,topic_4   | <null>    | 172.17.12.80:9092       |
+| 3  | consumer3     | topic_3          | topic_5           | <null>    | 172.17.12.80:9092       |
+| 4  | consumer4     | topic_4          | topic_6           | <null>    | 172.17.12.80:9092       |
+| 5  | consumer5     | topic_5,topic_6  | topic_7           | <null>    | 172.17.12.80:9092       |
+
+- **`consumer_name`**: A unique identifier for the consumer. This should match the `CONSUMER_NAME` defined in `config.py`.
+- **`topics_input`**: A comma-separated list of Kafka topics that the consumer will read from.
+- **`topics_output`**: A comma-separated list of Kafka topics to which the processed messages will be sent.
+- **`kafka_bootstrap_server`**: Kafka bootstrap server.
+- **`metadatas`**: Additional metadata for the consumer (optional).
 
 
 ### Setup and Installation
@@ -120,23 +126,6 @@ python main.py
 ```
 
 This will start the Kafka consumer, which will begin reading from the input topics, aggregating messages, processing them, and then forwarding them to the output topics.
-
-#### Example Table Structure
-
-| id | consumer_name | topics_input     | topics_output     | metadatas | kafka_bootstrap_server |
-|----|---------------|------------------|-------------------|-----------|------------------------|
-| 1  | consumer1     | topic_1          | topic_2           | <null>    | 172.17.12.80:9092       |
-| 2  | consumer2     | topic_2          | topic_3,topic_4   | <null>    | 172.17.12.80:9092       |
-| 3  | consumer3     | topic_3          | topic_5           | <null>    | 172.17.12.80:9092       |
-| 4  | consumer4     | topic_4          | topic_6           | <null>    | 172.17.12.80:9092       |
-| 5  | consumer5     | topic_5,topic_6  | topic_7           | <null>    | 172.17.12.80:9092       |
-
-
-- **`consumer_name`**: A unique identifier for the consumer. This should match the `CONSUMER_NAME` defined in `config.py`.
-- **`topics_input`**: A comma-separated list of Kafka topics that the consumer will read from.
-- **`topics_output`**: A comma-separated list of Kafka topics to which the processed messages will be sent.
-- **`kafka_bootstrap_server`**: Kafka bootstrap server.
-- **`metadatas`**: Additional metadata for the consumer (optional).
 
 ## Customization and Implementation
 
