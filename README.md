@@ -3,11 +3,11 @@
 ## Table of Contents
 
 1. [Introduction](#introduction)
-2. [Project Structure](#project-structure)
-3. [Architecture Overview](#architecture-overview)
-4. [Scope of the Project](#scope-of-the-project)
-5. [Setup and Installation](#setup-and-installation)
-6. [Database](#database)
+2. [Scope of the Project](#scope-of-the-project)
+3. [Project Structure](#project-structure)
+4. [Architecture Overview](#architecture-overview)
+5. [Database](#database)
+6. [Setup and Installation](#setup-and-installation)
 7. [Usage](#usage)
 8. [Customization and Implementation](#customization-and-implementation)
 9. [Considerations](#considerations)
@@ -16,6 +16,10 @@
 ## Introduction
 
 This project provides a template for building Kafka consumers that read messages from one or more Kafka topics, aggregate them based on a common identifier (e.g., `id`), process the aggregated message, and then forward the processed message to one or more output Kafka topics. This skeleton is designed to be easily extendable and customizable, allowing developers to implement specific processing logic by modifying a single function.
+
+## Scope of the Project
+
+The scope of this project is to provide a template or boilerplate for **QSINT workers** (_Kafka consumers_) that require message aggregation and custom processing logic. The template is designed to be extendable and flexible, allowing developers to easily implement their own processing logic while handling common tasks like message consumption, aggregation, and production.
 
 ## Project Structure
 
@@ -45,9 +49,13 @@ The architecture of the project is designed to be modular, allowing for easy cus
 5. **Processing Logic**: Custom logic implemented in the process() function in worker.py.
 6. **Timeout Handling**: Ensures that incomplete message aggregations are discarded after a configurable timeout.
 
-## Scope of the Project
+## Database
 
-The scope of this project is to provide a template or boilerplate for **QSINT workers** (_Kafka consumers_) that require message aggregation and custom processing logic. The template is designed to be extendable and flexible, allowing developers to easily implement their own processing logic while handling common tasks like message consumption, aggregation, and production.
+The consumer configuration is stored in a database table (`consumer_configs`). The `CONSUMER_NAME` in `config.py` determines which configuration to load. The configuration includes:
+
+- **Input Topics**: Topics from which the consumer will read messages.
+- **Output Topics**: Topics to which the processed messages will be sent.
+- **Kafka Bootstrap Servers**: Kafka brokers to connect to.
 
 ### Setup and Installation
 
@@ -104,23 +112,15 @@ python main.py
 
 This will start the Kafka consumer, which will begin reading from the input topics, aggregating messages, processing them, and then forwarding them to the output topics.
 
-## Database
-
-The consumer configuration is stored in a database table (`consumer_configs`). The `CONSUMER_NAME` in `config.py` determines which configuration to load. The configuration includes:
-
-- **Input Topics**: Topics from which the consumer will read messages.
-- **Output Topics**: Topics to which the processed messages will be sent.
-- **Kafka Bootstrap Servers**: Kafka brokers to connect to.
-
 #### Example Table Structure
 
-| id  | consumer_name | topics_input     | topics_output     | metadatas | kafka_bootstrap_server |
-|-----|---------------|------------------|-------------------|-----------|------------------------|
-| 2   | consumer1     | topic_1          | topic_2           | <null>    | 172.17.12.80:9092       |
-| 3   | consumer2     | topic_2          | topic_3,topic_4   | <null>    | 172.17.12.80:9092       |
-| 4   | consumer3     | topic_3          | topic_5           | <null>    | 172.17.12.80:9092       |
-| 5   | consumer4     | topic_4          | topic_6           | <null>    | 172.17.12.80:9092       |
-| 6   | consumer5     | topic_5,topic_6  | topic_7           | <null>    | 172.17.12.80:9092       |
+| id | consumer_name | topics_input     | topics_output     | metadatas | kafka_bootstrap_server |
+|----|---------------|------------------|-------------------|-----------|------------------------|
+| 1  | consumer1     | topic_1          | topic_2           | <null>    | 172.17.12.80:9092       |
+| 2  | consumer2     | topic_2          | topic_3,topic_4   | <null>    | 172.17.12.80:9092       |
+| 3  | consumer3     | topic_3          | topic_5           | <null>    | 172.17.12.80:9092       |
+| 4  | consumer4     | topic_4          | topic_6           | <null>    | 172.17.12.80:9092       |
+| 5  | consumer5     | topic_5,topic_6  | topic_7           | <null>    | 172.17.12.80:9092       |
 
 
 - **`consumer_name`**: A unique identifier for the consumer. This should match the `CONSUMER_NAME` defined in `config.py`.
