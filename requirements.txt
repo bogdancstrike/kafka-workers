@@ -1,6 +1,11 @@
 certifi==2024.7.4
 elastic-transport==8.15.0
 elasticsearch==8.14.0
+greenlet==3.0.3
 kafka-python==2.0.2
+kafka-python-ng==2.2.2
+psycopg2==2.9.9
+PyMySQL==1.1.1
+SQLAlchemy==2.0.32
+typing_extensions==4.12.2
 urllib3==2.2.2
-kafka-python-ng

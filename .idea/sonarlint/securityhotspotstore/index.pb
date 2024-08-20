@@ -9,15 +9,9 @@ g
 	config.py,1/a/1a1b9769344cb239f2e540e1e6ee1efa2d3034ea
 @
 requirements.txt,1/9/19359a61ae2446b51b549167b014da2fcf265768
-9
-	logger.py,e/a/ea7cb5eaec19ba9bd46df58c8e1a23cc5da4247c
 :
 
 Dockerfile,6/6/6651ddff6eb82c840ced7c1dddee15c6e1913dd4
-?
-deployment.yaml,a/6/a6219c80b63abe020f8ab9c671706c1510541743
-<
-service.yaml,b/8/b8f0e0ea7c47609f243af2d09ffaf10eba128465
 ;
 es-cert.crt,2/d/2d1358b287c09d53b8e5c75ddfdbbe57bb72a96b
 i
