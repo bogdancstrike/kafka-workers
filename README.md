@@ -32,6 +32,9 @@ This project provides a template for building Kafka consumers that read messages
 
 # Architecture Overview
 
+![Architecture](./images/qsint-core-consumers-kafka.drawio.png)
+
+
 The architecture of the project is designed to be modular, allowing for easy customization and scaling. The key components are:
 
 1. **Kafka Consumer**: Reads messages from one or more input topics.
