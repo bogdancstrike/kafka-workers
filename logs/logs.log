@@ -338,3 +338,162 @@
 2024-08-19 14:06:10,298 - RotatingLog - INFO - Shutting down gracefully...
 2024-08-19 14:06:10,302 - RotatingLog - INFO - Kafka consumer closed.
 2024-08-19 14:06:10,302 - RotatingLog - INFO - Kafka producer closed.
+2024-08-20 08:34:36,285 - RotatingLog - ERROR - Unexpected error in main execution: (pymysql.err.OperationalError) (1054, "Unknown column 'consumer_configs.metadatas' in 'field list'")
+[SQL: SELECT consumer_configs.id AS consumer_configs_id, consumer_configs.consumer_name AS consumer_configs_consumer_name, consumer_configs.topics_input AS consumer_configs_topics_input, consumer_configs.topics_output AS consumer_configs_topics_output, consumer_configs.metadatas AS consumer_configs_metadatas 
+FROM consumer_configs 
+WHERE consumer_configs.consumer_name = %(consumer_name_1)s 
+ LIMIT %(param_1)s]
+[parameters: {'consumer_name_1': 'consumer_skeleton', 'param_1': 1}]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2024-08-20 08:35:32,621 - RotatingLog - ERROR - Unexpected error in main execution: (pymysql.err.OperationalError) (1054, "Unknown column 'consumer_configs.metadatas' in 'field list'")
+[SQL: SELECT consumer_configs.id AS consumer_configs_id, consumer_configs.consumer_name AS consumer_configs_consumer_name, consumer_configs.topics_input AS consumer_configs_topics_input, consumer_configs.topics_output AS consumer_configs_topics_output, consumer_configs.metadatas AS consumer_configs_metadatas 
+FROM consumer_configs 
+WHERE consumer_configs.consumer_name = %(consumer_name_1)s 
+ LIMIT %(param_1)s]
+[parameters: {'consumer_name_1': 'consumer_skeleton', 'param_1': 1}]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2024-08-20 08:36:26,947 - RotatingLog - INFO - Kafka consumer connected to topics ['test_modul_colectare']
+2024-08-20 08:36:27,051 - RotatingLog - INFO - Kafka producer connected to topics ['modul_colectare_out']
+2024-08-20 08:36:27,051 - RotatingLog - INFO - Starting message handling loop...
+2024-08-20 08:37:29,576 - RotatingLog - INFO - Shutting down gracefully...
+2024-08-20 08:37:29,580 - RotatingLog - INFO - Kafka consumer closed.
+2024-08-20 08:37:29,581 - RotatingLog - INFO - Kafka producer closed.
+2024-08-20 08:37:35,532 - RotatingLog - INFO - Kafka consumer connected to topics ['test_modul_colectare']
+2024-08-20 08:37:35,636 - RotatingLog - INFO - Kafka producer connected to topics ['modul_colectare_out']
+2024-08-20 08:37:35,636 - RotatingLog - INFO - Starting message handling loop...
+2024-08-20 08:37:37,639 - RotatingLog - INFO - Shutting down gracefully...
+2024-08-20 08:40:09,014 - RotatingLog - INFO - Kafka consumer connected to topics ['test_modul_colectare']
+2024-08-20 08:40:09,117 - RotatingLog - INFO - Kafka producer connected to topics ['modul_colectare_out']
+2024-08-20 08:40:09,118 - RotatingLog - INFO - Starting message handling loop...
+2024-08-20 08:40:37,958 - RotatingLog - DEBUG - Processed message sent to Kafka topic modul_colectare_out
+2024-08-20 08:41:21,989 - RotatingLog - DEBUG - Processed message sent to Kafka topic modul_colectare_out
+2024-08-20 08:43:12,516 - RotatingLog - INFO - Shutting down gracefully...
+2024-08-20 08:43:12,521 - RotatingLog - INFO - Kafka consumer closed.
+2024-08-20 08:43:12,522 - RotatingLog - INFO - Kafka producer closed.
+2024-08-20 08:43:13,694 - RotatingLog - INFO - Kafka consumer connected to topics ['input_topic1', 'input_topic_2']
+2024-08-20 08:43:13,798 - RotatingLog - INFO - Kafka producer connected to topics ['output_topic_1', 'output_topic_2']
+2024-08-20 08:43:13,799 - RotatingLog - INFO - Starting message handling loop...
+2024-08-20 08:43:45,776 - RotatingLog - INFO - Shutting down gracefully...
+2024-08-20 08:43:45,781 - RotatingLog - INFO - Kafka consumer closed.
+2024-08-20 08:43:45,781 - RotatingLog - INFO - Kafka producer closed.
+2024-08-20 08:43:46,913 - RotatingLog - INFO - Kafka consumer connected to topics ['input_topic_1', 'input_topic_2']
+2024-08-20 08:43:47,018 - RotatingLog - INFO - Kafka producer connected to topics ['output_topic_1', 'output_topic_2']
+2024-08-20 08:43:47,018 - RotatingLog - INFO - Starting message handling loop...
+2024-08-20 08:44:04,681 - RotatingLog - DEBUG - Processed message sent to Kafka topic output_topic_1
+2024-08-20 08:44:04,682 - RotatingLog - DEBUG - Processed message sent to Kafka topic output_topic_2
+2024-08-20 08:46:50,924 - RotatingLog - DEBUG - Processed message sent to Kafka topic output_topic_1
+2024-08-20 08:46:50,924 - RotatingLog - DEBUG - Processed message sent to Kafka topic output_topic_2
+2024-08-20 08:49:57,398 - RotatingLog - INFO - Shutting down gracefully...
+2024-08-20 08:49:57,404 - RotatingLog - INFO - Kafka consumer closed.
+2024-08-20 08:49:57,405 - RotatingLog - INFO - Kafka producer closed.
+2024-08-20 08:49:57,975 - RotatingLog - INFO - Kafka consumer connected to topics ['input_topic_1', 'input_topic_2']
+2024-08-20 08:49:58,079 - RotatingLog - INFO - Kafka producer connected to topics ['output_topic_1', 'output_topic_2']
+2024-08-20 08:49:58,079 - RotatingLog - INFO - Starting message handling loop...
+2024-08-20 08:49:58,079 - RotatingLog - ERROR - Unexpected error in main execution: name 'defaultdict' is not defined
+2024-08-20 08:49:58,079 - RotatingLog - INFO - Kafka consumer closed.
+2024-08-20 08:49:58,080 - RotatingLog - INFO - Kafka producer closed.
+2024-08-20 08:50:17,248 - RotatingLog - INFO - Kafka consumer connected to topics ['input_topic_1', 'input_topic_2']
+2024-08-20 08:50:17,352 - RotatingLog - INFO - Kafka producer connected to topics ['output_topic_1', 'output_topic_2']
+2024-08-20 08:50:17,352 - RotatingLog - INFO - Starting message handling loop...
+2024-08-20 08:50:21,330 - RotatingLog - INFO - Shutting down gracefully...
+2024-08-20 08:50:21,334 - RotatingLog - INFO - Kafka consumer closed.
+2024-08-20 08:50:21,334 - RotatingLog - INFO - Kafka producer closed.
+2024-08-20 08:50:22,553 - RotatingLog - INFO - Kafka consumer connected to topics ['input_topic_1', 'input_topic_2']
+2024-08-20 08:50:22,657 - RotatingLog - INFO - Kafka producer connected to topics ['output_topic_1', 'output_topic_2']
+2024-08-20 08:50:22,657 - RotatingLog - INFO - Starting message handling loop...
+2024-08-20 08:52:04,339 - RotatingLog - DEBUG - Processed message sent to Kafka topic output_topic_1
+2024-08-20 08:52:04,339 - RotatingLog - DEBUG - Processed message sent to Kafka topic output_topic_2
+2024-08-20 08:52:40,950 - RotatingLog - INFO - Shutting down gracefully...
+2024-08-20 08:52:40,955 - RotatingLog - INFO - Kafka consumer closed.
+2024-08-20 08:52:40,955 - RotatingLog - INFO - Kafka producer closed.
+2024-08-20 08:52:43,170 - RotatingLog - INFO - Kafka consumer connected to topics ['input_topic_1', 'input_topic_2']
+2024-08-20 08:52:43,278 - RotatingLog - INFO - Kafka producer connected to topics ['output_topic_1', 'output_topic_2']
+2024-08-20 08:52:43,278 - RotatingLog - INFO - Starting message handling loop...
+2024-08-20 08:54:11,701 - RotatingLog - DEBUG - Processed message sent to Kafka topic output_topic_1
+2024-08-20 08:54:11,702 - RotatingLog - DEBUG - Processed message sent to Kafka topic output_topic_2
+2024-08-20 08:55:42,499 - RotatingLog - INFO - Shutting down gracefully...
+2024-08-20 08:55:42,507 - RotatingLog - INFO - Kafka consumer closed.
+2024-08-20 08:55:42,508 - RotatingLog - INFO - Kafka producer closed.
+2024-08-20 08:55:44,274 - RotatingLog - INFO - Kafka consumer connected to topics ['input_topic_1', 'input_topic_2']
+2024-08-20 08:55:44,378 - RotatingLog - INFO - Kafka producer connected to topics ['output_topic_1', 'output_topic_2']
+2024-08-20 08:55:44,379 - RotatingLog - INFO - Starting message handling loop...
+2024-08-20 08:56:13,928 - RotatingLog - INFO - Shutting down gracefully...
+2024-08-20 08:56:13,932 - RotatingLog - INFO - Kafka consumer closed.
+2024-08-20 08:56:13,932 - RotatingLog - INFO - Kafka producer closed.
+2024-08-20 08:56:15,127 - RotatingLog - INFO - Kafka consumer connected to topics ['input_topic_1', 'input_topic_2']
+2024-08-20 08:56:15,231 - RotatingLog - INFO - Kafka producer connected to topics ['output_topic_1', 'output_topic_2']
+2024-08-20 08:56:15,231 - RotatingLog - INFO - Starting message handling loop...
+2024-08-20 08:56:22,373 - RotatingLog - INFO - Message 1/2 arrived for ID = 3
+2024-08-20 08:56:28,586 - RotatingLog - INFO - Message 2/2 arrived for ID = 3
+2024-08-20 08:56:28,587 - RotatingLog - INFO - All 2 messages received for ID = 3. Aggregating...
+2024-08-20 08:56:28,587 - RotatingLog - DEBUG - Processed message sent to Kafka topic output_topic_1
+2024-08-20 08:56:28,587 - RotatingLog - DEBUG - Processed message sent to Kafka topic output_topic_2
+2024-08-20 08:56:37,209 - RotatingLog - INFO - Message 1/2 arrived for ID = 3
+2024-08-20 08:56:48,574 - RotatingLog - INFO - Message 1/2 arrived for ID = 4
+2024-08-20 08:56:54,935 - RotatingLog - INFO - Message 2/2 arrived for ID = 4
+2024-08-20 08:56:54,935 - RotatingLog - INFO - All 2 messages received for ID = 4. Aggregating...
+2024-08-20 08:56:54,935 - RotatingLog - DEBUG - Processed message sent to Kafka topic output_topic_1
+2024-08-20 08:56:54,936 - RotatingLog - DEBUG - Processed message sent to Kafka topic output_topic_2
+2024-08-20 08:58:19,680 - RotatingLog - INFO - Shutting down gracefully...
+2024-08-20 08:58:19,684 - RotatingLog - INFO - Kafka consumer closed.
+2024-08-20 08:58:19,684 - RotatingLog - INFO - Kafka producer closed.
+2024-08-20 08:58:20,838 - RotatingLog - INFO - Kafka consumer connected to topics ['input_topic_1', 'input_topic_2']
+2024-08-20 08:58:20,947 - RotatingLog - INFO - Kafka producer connected to topics ['output_topic_1', 'output_topic_2']
+2024-08-20 08:58:20,948 - RotatingLog - INFO - Starting message handling loop...
+2024-08-20 08:58:27,857 - RotatingLog - ERROR - Error processing message: Expecting ':' delimiter: line 1 column 8 (char 7)
+2024-08-20 08:58:39,764 - RotatingLog - INFO - Message 1/2 arrived for ID = 3
+2024-08-20 08:58:59,990 - RotatingLog - INFO - Message 2/2 arrived for ID = 3
+2024-08-20 08:58:59,991 - RotatingLog - INFO - All 2 messages received for ID = 3. Aggregating...
+2024-08-20 08:58:59,992 - RotatingLog - DEBUG - Processed message sent to Kafka topic output_topic_1
+2024-08-20 08:58:59,993 - RotatingLog - DEBUG - Processed message sent to Kafka topic output_topic_2
+2024-08-20 08:59:04,727 - RotatingLog - INFO - Shutting down gracefully...
+2024-08-20 08:59:04,734 - RotatingLog - INFO - Kafka consumer closed.
+2024-08-20 08:59:04,734 - RotatingLog - INFO - Kafka producer closed.
+2024-08-20 08:59:07,353 - RotatingLog - INFO - Kafka consumer connected to topics ['input_topic_1', 'input_topic_2']
+2024-08-20 08:59:07,462 - RotatingLog - INFO - Kafka producer connected to topics ['output_topic_1', 'output_topic_2']
+2024-08-20 08:59:07,463 - RotatingLog - INFO - Starting message handling loop...
+2024-08-20 08:59:16,842 - RotatingLog - INFO - Message 1/2 arrived for ID = 3
+2024-08-20 08:59:27,774 - RotatingLog - INFO - Message 2/2 arrived for ID = 3
+2024-08-20 08:59:27,774 - RotatingLog - INFO - All 2 messages received for ID = 3. Aggregating...
+2024-08-20 08:59:27,776 - RotatingLog - DEBUG - Processed message sent to Kafka topic output_topic_1
+2024-08-20 08:59:27,778 - RotatingLog - DEBUG - Processed message sent to Kafka topic output_topic_2
+2024-08-20 08:59:38,189 - RotatingLog - INFO - Message 1/2 arrived for ID = 4
+2024-08-20 08:59:42,154 - RotatingLog - INFO - Message 1/2 arrived for ID = 4
+2024-08-20 08:59:47,366 - RotatingLog - INFO - Message 2/2 arrived for ID = 4
+2024-08-20 08:59:47,367 - RotatingLog - INFO - All 2 messages received for ID = 4. Aggregating...
+2024-08-20 08:59:47,367 - RotatingLog - DEBUG - Processed message sent to Kafka topic output_topic_1
+2024-08-20 08:59:47,369 - RotatingLog - DEBUG - Processed message sent to Kafka topic output_topic_2
+2024-08-20 08:59:54,893 - RotatingLog - INFO - Message 1/2 arrived for ID = 4
+2024-08-20 08:59:59,492 - RotatingLog - INFO - Message 2/2 arrived for ID = 4
+2024-08-20 08:59:59,492 - RotatingLog - INFO - All 2 messages received for ID = 4. Aggregating...
+2024-08-20 08:59:59,493 - RotatingLog - DEBUG - Processed message sent to Kafka topic output_topic_1
+2024-08-20 08:59:59,494 - RotatingLog - DEBUG - Processed message sent to Kafka topic output_topic_2
+2024-08-20 09:00:10,515 - RotatingLog - INFO - Message 1/2 arrived for ID = 4
+2024-08-20 09:00:50,334 - RotatingLog - INFO - Message 1/2 arrived for ID = 4
+2024-08-20 09:01:08,287 - RotatingLog - INFO - Shutting down gracefully...
+2024-08-20 09:01:08,293 - RotatingLog - INFO - Kafka consumer closed.
+2024-08-20 09:01:08,293 - RotatingLog - INFO - Kafka producer closed.
+2024-08-20 09:01:09,989 - RotatingLog - INFO - Kafka consumer connected to topics ['input_topic_1', 'input_topic_2']
+2024-08-20 09:01:10,098 - RotatingLog - INFO - Kafka producer connected to topics ['output_topic_1', 'output_topic_2']
+2024-08-20 09:01:10,098 - RotatingLog - INFO - Starting message handling loop...
+2024-08-20 09:02:13,887 - RotatingLog - INFO - Shutting down gracefully...
+2024-08-20 09:02:13,891 - RotatingLog - INFO - Kafka consumer closed.
+2024-08-20 09:02:13,892 - RotatingLog - INFO - Kafka producer closed.
+2024-08-20 09:02:24,045 - RotatingLog - INFO - Kafka consumer connected to topics ['input_topic_1', 'input_topic_2']
+2024-08-20 09:02:24,149 - RotatingLog - INFO - Kafka producer connected to topics ['output_topic_1', 'output_topic_2']
+2024-08-20 09:02:24,149 - RotatingLog - INFO - Starting message handling loop...
+2024-08-20 09:02:31,478 - RotatingLog - INFO - Message 1/2 arrived for ID = 3
+2024-08-20 09:03:02,515 - RotatingLog - WARNING - Timeout reached, ignoring and removing incomplete message with ID = 3 from memory
+2024-08-20 09:03:27,819 - RotatingLog - INFO - Message 1/2 arrived for ID = 3
+2024-08-20 09:03:32,555 - RotatingLog - INFO - Message 2/2 arrived for ID = 3
+2024-08-20 09:03:32,555 - RotatingLog - INFO - All 2 messages received for ID = 3. Aggregating...
+2024-08-20 09:03:32,555 - RotatingLog - DEBUG - Processed message sent to Kafka topic output_topic_1
+2024-08-20 09:03:32,555 - RotatingLog - DEBUG - Processed message sent to Kafka topic output_topic_2
+2024-08-20 09:08:17,992 - RotatingLog - INFO - Shutting down gracefully...
+2024-08-20 09:08:17,996 - RotatingLog - INFO - Kafka consumer closed.
+2024-08-20 09:08:17,996 - RotatingLog - INFO - Kafka producer closed.
+2024-08-20 09:08:19,061 - RotatingLog - INFO - Kafka consumer connected to topics ['input_topic_1', 'input_topic_2']
+2024-08-20 09:08:19,165 - RotatingLog - ERROR - Unexpected error while connecting to Kafka producer: name 'KAFKA_OUTPUT_TOPICS' is not defined. Retrying in 5 seconds...
+2024-08-20 09:08:24,273 - RotatingLog - ERROR - Unexpected error while connecting to Kafka producer: name 'KAFKA_OUTPUT_TOPICS' is not defined. Retrying in 5 seconds...
+2024-08-20 09:08:29,382 - RotatingLog - ERROR - Unexpected error while connecting to Kafka producer: name 'KAFKA_OUTPUT_TOPICS' is not defined. Retrying in 5 seconds...
+2024-08-20 09:08:34,492 - RotatingLog - ERROR - Unexpected error while connecting to Kafka producer: name 'KAFKA_OUTPUT_TOPICS' is not defined. Retrying in 5 seconds...
