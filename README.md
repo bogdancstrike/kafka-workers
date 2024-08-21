@@ -19,7 +19,7 @@ This project provides a template for building Kafka consumers that read messages
 
 ## Scope of the Project
 
-The scope of this project is to provide a template or boilerplate for **QSINT workers** (_Kafka consumers_) that require message aggregation and custom processing logic. The template is designed to be extendable and flexible, allowing developers to easily implement their own processing logic while handling common tasks like message consumption, aggregation, and production.
+The scope of this project is to provide a template or boilerplate for **Data Processing Workers** (_Kafka consumers-producers_) that require message aggregation and custom processing logic. The template is designed to be extendable and flexible, allowing developers to easily implement their own processing logic while handling common tasks like message consumption, aggregation, and production.
 
 ## Project Structure
 
